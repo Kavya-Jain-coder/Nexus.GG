@@ -49,10 +49,13 @@ function AppLayout({ children }) {
     <div className={!isPublicRoute ? config?.bgClass : 'theme-nexus'}>
       {/* Full-screen Fixed Parallax Background */}
       {!isPublicRoute && (
-        <div 
-          style={{ backgroundImage: `url(${config?.background})` }}
-          className="parallax-bg" 
-        />
+        <>
+          <div 
+            style={{ backgroundImage: `url(${config?.background})` }}
+            className="parallax-bg" 
+          />
+          <div className="gradient-blur-overlay" />
+        </>
       )}
 
       <div className="flex min-h-screen bg-transparent">

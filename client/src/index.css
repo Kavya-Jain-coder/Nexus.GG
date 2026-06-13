@@ -151,7 +151,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: brightness(0.25) contrast(1.1);
+  filter: brightness(0.65) contrast(1.1);
   transition: background-image 0.8s ease-in-out, filter 0.8s ease-in-out;
 }
 
@@ -162,6 +162,17 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 50% 50%, transparent 10%, rgba(3, 3, 7, 0.95) 90%), var(--game-bg-blend);
-  mix-blend-mode: multiply;
+  /* Dark mask on the left for text contrast, fading to fully transparent on the right to show character details */
+  background: linear-gradient(to right, rgba(8, 8, 16, 0.98) 20%, rgba(8, 8, 16, 0.6) 45%, rgba(8, 8, 16, 0) 100%);
+}
+
+/* Dynamic gradient backdrop blur overlay */
+.gradient-blur-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -8;
+  backdrop-filter: blur(14px);
+  mask-image: linear-gradient(to right, black 25%, transparent 60%);
+  -webkit-mask-image: linear-gradient(to right, black 25%, transparent 60%);
+  pointer-events: none;
 }

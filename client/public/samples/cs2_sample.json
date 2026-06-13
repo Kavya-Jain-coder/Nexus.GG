@@ -1,0 +1,16 @@
+{
+  "game": "cs2",
+  "match_id": "cs2_match_88710",
+  "played_at": "2026-06-12T19:00:00Z",
+  "map": "de_mirage",
+  "rounds_won": 13,
+  "rounds_lost": 11,
+  "kills": 19,
+  "deaths": 18,
+  "assists": 6,
+  "adr": 82.5,
+  "utility_thrown": 14,
+  "flash_duration_blinded": 18.5,
+  "first_kills": 3,
+  "accuracy": 0.44
+}

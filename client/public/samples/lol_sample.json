@@ -1,0 +1,22 @@
+{
+  "game": "lol",
+  "match_id": "lol_match_77610",
+  "played_at": "2026-06-12T18:00:00Z",
+  "champion": "Yasuo",
+  "lane": "Mid",
+  "is_win": true,
+  "kills": 8,
+  "deaths": 3,
+  "assists": 9,
+  "cs": 210,
+  "duration_minutes": 28,
+  "cs_per_min": 7.5,
+  "vision_score": 24,
+  "teamfight_participation": 0.58,
+  "gold_earned": 12400,
+  "objectives_participated": {
+    "barons": 1,
+    "dragons": 2,
+    "towers": 4
+  }
+}

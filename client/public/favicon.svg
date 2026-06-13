@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="nexus-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9b5de5" />
+      <stop offset="100%" stop-color="#00f0ff" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  <!-- Outer glowing ring -->
+  <circle cx="50" cy="50" r="42" fill="none" stroke="url(#nexus-grad)" stroke-width="4" opacity="0.8" filter="url(#glow)" />
+  <!-- Inner futuristic triangles (Nexus style) -->
+  <polygon points="50,18 78,66 22,66" fill="none" stroke="url(#nexus-grad)" stroke-width="5" stroke-linejoin="round" />
+  <polygon points="50,32 68,66 32,66" fill="url(#nexus-grad)" opacity="0.6" />
+  <circle cx="50" cy="50" r="4" fill="#ffffff" />
+</svg>

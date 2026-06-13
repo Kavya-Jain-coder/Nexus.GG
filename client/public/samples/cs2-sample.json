@@ -1,0 +1,16 @@
+{
+  "game": "cs2",
+  "match_id": "cs2_match_001",
+  "played_at": "2026-06-12T17:15:00Z",
+  "map": "de_inferno",
+  "rounds_won": 16,
+  "rounds_lost": 12,
+  "kills": 25,
+  "deaths": 18,
+  "assists": 4,
+  "adr": 88.5,
+  "utility_thrown": 14,
+  "flash_duration_blinded": 12.5,
+  "first_kills": 4,
+  "accuracy": 0.42
+}

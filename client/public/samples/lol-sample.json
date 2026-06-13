@@ -1,0 +1,18 @@
+{
+  "game": "lol",
+  "match_id": "lol_match_001",
+  "played_at": "2026-06-12T15:45:00Z",
+  "champion": "Ahri",
+  "lane": "Mid",
+  "is_win": true,
+  "kills": 8,
+  "deaths": 3,
+  "assists": 12,
+  "cs": 210,
+  "cs_per_min": 7.0,
+  "duration_minutes": 30,
+  "vision_score": 35,
+  "teamfight_participation": 0.65,
+  "gold_earned": 14200,
+  "objectives_participated": { "barons": 1, "dragons": 3, "towers": 4 }
+}

@@ -1,0 +1,17 @@
+{
+  "game": "valorant",
+  "match_id": "val_match_001",
+  "played_at": "2026-06-12T20:00:00Z",
+  "agent": "Jett",
+  "map": "Ascent",
+  "rounds_won": 13,
+  "rounds_lost": 8,
+  "kills": 22,
+  "deaths": 14,
+  "assists": 6,
+  "headshot_percent": 0.28,
+  "first_bloods": 3,
+  "first_deaths": 1,
+  "combat_score": 280,
+  "ability_casts": { "q": 12, "e": 8, "c": 5, "x": 2 }
+}

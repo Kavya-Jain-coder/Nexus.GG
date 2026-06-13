@@ -1,0 +1,14 @@
+{
+  "game": "pubg",
+  "match_id": "pubg_match_001",
+  "played_at": "2026-06-12T18:30:00Z",
+  "kills": 5,
+  "deaths": 1,
+  "assists": 3,
+  "placement": 2,
+  "survival_seconds": 1620,
+  "distance_traveled": 4500,
+  "damage_dealt": 580,
+  "heals_used": 5,
+  "boosts_used": 3
+}

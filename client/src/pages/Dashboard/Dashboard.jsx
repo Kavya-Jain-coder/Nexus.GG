@@ -6,6 +6,8 @@ import DailyChecklist from '../../components/DailyChecklist/DailyChecklist';
 import GlassCard from '../../components/ui/GlassCard';
 import NeonButton from '../../components/ui/NeonButton';
 import ThreeHologram from '../../components/dashboard/ThreeHologram';
+import DashboardBackground3D from '../../components/dashboard/DashboardBackground3D';
+import ThreeStatVisualizer from '../../components/dashboard/ThreeStatVisualizer';
 import { useGameStore } from '../../store/useGameStore';
 import { useAuthStore } from '../../store/useAuthStore';
 import { useMatches } from '../../hooks/useMatches';
@@ -30,7 +32,8 @@ export default function Dashboard() {
   const gameConfig = GAME_CONFIGS[activeGame || 'valorant'];
 
   return (
-    <div className="space-y-8 pb-12 hud-grid-bg">
+    <div className="space-y-8 pb-12 hud-grid-bg relative z-10">
+      <DashboardBackground3D activeGame={activeGame} />
       {/* Futuristic HUD Welcome Control Panel */}
       <div className="hud-panel hud-panel-active grid grid-cols-1 lg:grid-cols-5 overflow-hidden">
         <div className="scanlines-overlay" />
@@ -134,13 +137,19 @@ export default function Dashboard() {
 
             {/* Wins & Stats */}
             <div className="grid grid-cols-2 gap-4">
-              <div className="p-4 bg-white/5 rounded-xl border border-white/5 text-center">
-                <p className="text-[10px] text-slate-400 font-mono uppercase">Win Rate</p>
-                <p className="font-display font-bold text-lg text-white mt-1">{(activeProfile.win_rate * 100).toFixed(1)}%</p>
+              <div className="p-4 bg-white/5 rounded-xl border border-white/5 text-center relative overflow-hidden flex flex-col justify-between items-center min-h-[160px]">
+                <p className="text-[10px] text-slate-400 font-mono uppercase tracking-wider">Win Rate</p>
+                <div className="w-20 h-20 my-1 relative">
+                  <ThreeStatVisualizer type="progress-ring" value={activeProfile.win_rate} activeGame={activeGame} />
+                </div>
+                <p className="font-display font-bold text-base text-white mt-1 font-mono">{(activeProfile.win_rate * 100).toFixed(1)}%</p>
               </div>
-              <div className="p-4 bg-white/5 rounded-xl border border-white/5 text-center">
-                <p className="text-[10px] text-slate-400 font-mono uppercase">XP Earned</p>
-                <p className="font-display font-bold text-lg text-[var(--game-accent)] mt-1">{activeProfile.total_xp}</p>
+              <div className="p-4 bg-white/5 rounded-xl border border-white/5 text-center relative overflow-hidden flex flex-col justify-between items-center min-h-[160px]">
+                <p className="text-[10px] text-slate-400 font-mono uppercase tracking-wider">XP Earned</p>
+                <div className="w-20 h-20 my-1 relative">
+                  <ThreeStatVisualizer type="floating-crystal" activeGame={activeGame} />
+                </div>
+                <p className="font-display font-bold text-base text-[var(--game-accent)] mt-1 font-mono">{activeProfile.total_xp}</p>
               </div>
             </div>
 

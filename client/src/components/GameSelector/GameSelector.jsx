@@ -2,6 +2,7 @@ import React from 'react';
 import GlassCard from '../ui/GlassCard';
 import { GAME_CONFIGS } from '../../lib/gameConfigs';
 import { useGameStore } from '../../store/useGameStore';
+import GameIcon from '../ui/GameIcon';
 
 export default function GameSelector() {
   const { activeGame, setActiveGame, gameProfiles } = useGameStore();
@@ -37,10 +38,10 @@ export default function GameSelector() {
             {/* Visual game background vignette overlay */}
             <div className="absolute inset-0 bg-cover bg-center opacity-5 filter blur-sm -z-10" style={{ backgroundImage: `url(${game.background})` }} />
 
-            {/* Coach Persona Icon */}
-            <span className="text-4xl mb-4 filter drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] animate-float">
-              {game.coachAvatar}
-            </span>
+            {/* Game Vector Icon */}
+            <div className="animate-float mb-2">
+              <GameIcon gameId={game.id} className="w-11 h-11" />
+            </div>
 
             {/* Game Title */}
             <h3 className="font-display font-bold text-base tracking-wide text-white mb-2">

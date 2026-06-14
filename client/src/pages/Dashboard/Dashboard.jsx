@@ -29,15 +29,19 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-8 pb-12">
-      {/* Hero Banner Section */}
       <GlassCard 
         className="w-full relative min-h-64 flex items-center p-8 md:p-12 overflow-hidden border border-white/5"
-        style={{
-          backgroundImage: `linear-gradient(to right, rgba(8, 8, 16, 1) 25%, rgba(8, 8, 16, 0.8) 55%, rgba(8, 8, 16, 0.3)) , url(${gameConfig?.background})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}
       >
+        {/* Banner game-specific character artwork overlay */}
+        <div 
+          className="absolute inset-y-0 right-0 w-full md:w-[55%] opacity-90 pointer-events-none z-0 bg-cover bg-no-repeat"
+          style={{
+            backgroundImage: `url(${gameConfig?.background})`,
+            backgroundPosition: 'right center',
+            maskImage: 'linear-gradient(to right, transparent 0%, black 100%)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 100%)'
+          }}
+        />
         <div className="space-y-4 max-w-xl relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-semibold tracking-wider text-slate-300">
             <Sparkles className="w-3.5 h-3.5 text-yellow-400" />

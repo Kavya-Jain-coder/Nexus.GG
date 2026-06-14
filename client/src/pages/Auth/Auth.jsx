@@ -6,6 +6,7 @@ import { supabase } from '../../lib/supabase';
 import { useAuthStore } from '../../store/useAuthStore';
 import { useGameStore } from '../../store/useGameStore';
 import ParticleBackground from '../../components/layout/ParticleBackground';
+import GameIcon from '../../components/ui/GameIcon';
 
 // Centralized background image imports for production bundle safety
 import heroTunnel from '../../assets/backgrounds/hero-tunnel.jpg';
@@ -653,7 +654,7 @@ export default function Auth() {
         style={{
           backgroundImage: `url(${getStepBackground()})`,
           backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundPosition: 'right center',
         }}
         className="absolute inset-0 w-full h-full z-0"
       />
@@ -926,7 +927,7 @@ export default function Auth() {
               
               <motion.div 
                 animate={shakingInput ? { x: [-10, 10, -10, 10, -5, 5, 0] } : {}}
-                className="absolute right-8 md:right-24 top-[45%] max-w-lg w-[85%] text-right z-20 space-y-6"
+                className="absolute left-8 md:left-24 top-[35%] max-w-lg w-[85%] text-left z-20 space-y-6"
               >
                 <h2 className="font-display font-black text-3xl md:text-4xl text-white tracking-wide">
                   SET YOUR ENCRYPTION KEY
@@ -943,13 +944,13 @@ export default function Auth() {
                     placeholder="••••••••••••"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className={`w-full bg-transparent border-b-2 border-white/10 text-white font-mono text-xl md:text-2xl pb-3 focus:outline-none transition-all duration-300 text-right
+                    className={`w-full bg-transparent border-b-2 border-white/10 text-white font-mono text-xl md:text-2xl pb-3 focus:outline-none transition-all duration-300 text-left
                       ${pulseSuccess ? 'border-emerald-500 shadow-[0_4px_15px_rgba(16,185,129,0.3)]' : 'focus:border-yellow-500 focus:shadow-[0_4px_15px_rgba(212,175,55,0.25)]'}
                     `}
                   />
 
                   {inputError && (
-                    <p className="text-xs text-yellow-500 font-mono mt-3 flex items-center justify-end gap-1.5 animate-float-in">
+                    <p className="text-xs text-yellow-500 font-mono mt-3 flex items-center gap-1.5 animate-float-in">
                       <AlertCircle className="w-3.5 h-3.5" /> {inputError}
                     </p>
                   )}
@@ -957,7 +958,7 @@ export default function Auth() {
                   <button
                     type="submit"
                     onMouseEnter={handleHover}
-                    className="absolute left-0 bottom-3 p-1 text-slate-450 hover:text-yellow-500 transition-colors"
+                    className="absolute right-0 bottom-3 p-1 text-slate-450 hover:text-yellow-500 transition-colors"
                   >
                     <ArrowRight className="w-6 h-6" />
                   </button>
@@ -993,9 +994,9 @@ export default function Auth() {
                     }}
                   >
                     {/* Floating icon */}
-                    <span className="text-4xl md:text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
-                      {game.icon}
-                    </span>
+                    <div className="transform group-hover:scale-110 transition-transform duration-300 mb-1">
+                      <GameIcon gameId={game.id} className="w-12 h-12" />
+                    </div>
                     <h3 className="font-mono text-xs font-black text-slate-300 group-hover:text-white tracking-widest uppercase">
                       {game.name}
                     </h3>
@@ -1018,7 +1019,7 @@ export default function Auth() {
               
               <motion.div 
                 animate={shakingInput ? { x: [-10, 10, -10, 10, -5, 5, 0] } : {}}
-                className="absolute left-1/2 md:left-[55%] -translate-x-1/2 md:translate-x-0 top-[35%] max-w-lg w-[85%] text-left z-20 space-y-6"
+                className="absolute left-8 md:left-24 top-[35%] max-w-lg w-[85%] text-left z-20 space-y-6"
               >
                 <h2 className="font-display font-black text-3xl md:text-4xl text-white tracking-wide leading-tight">
                   IDENTIFY YOURSELF
@@ -1065,7 +1066,7 @@ export default function Auth() {
               
               <motion.div 
                 animate={shakingInput ? { x: [-10, 10, -10, 10, -5, 5, 0] } : {}}
-                className="absolute right-8 md:right-24 bottom-28 max-w-lg w-[85%] text-right z-20 space-y-6"
+                className="absolute left-8 md:left-24 top-[35%] max-w-lg w-[85%] text-left z-20 space-y-6"
               >
                 <h2 className="font-display font-black text-3xl md:text-4xl text-white tracking-wide">
                   CONFIRM YOUR CIPHER
@@ -1082,13 +1083,13 @@ export default function Auth() {
                     placeholder="••••••••••••"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className={`w-full bg-transparent border-b-2 border-white/10 text-white font-mono text-xl md:text-2xl pb-3 focus:outline-none transition-all duration-300 text-right
+                    className={`w-full bg-transparent border-b-2 border-white/10 text-white font-mono text-xl md:text-2xl pb-3 focus:outline-none transition-all duration-300 text-left
                       ${pulseSuccess ? 'border-emerald-500 shadow-[0_4px_15px_rgba(16,185,129,0.3)]' : 'focus:border-cyan-400 focus:shadow-[0_4px_15px_rgba(0,240,255,0.25)]'}
                     `}
                   />
 
                   {inputError && (
-                    <p className="text-xs text-cyan-400 font-mono mt-3 flex items-center justify-end gap-1.5 animate-float-in">
+                    <p className="text-xs text-cyan-400 font-mono mt-3 flex items-center gap-1.5 animate-float-in">
                       <AlertCircle className="w-3.5 h-3.5" /> {inputError}
                     </p>
                   )}
@@ -1096,7 +1097,7 @@ export default function Auth() {
                   <button
                     type="submit"
                     onMouseEnter={handleHover}
-                    className="absolute left-0 bottom-3 p-1 text-slate-400 hover:text-cyan-400 transition-colors"
+                    className="absolute right-0 bottom-3 p-1 text-slate-400 hover:text-cyan-400 transition-colors"
                   >
                     <ArrowRight className="w-6 h-6" />
                   </button>

@@ -6,6 +6,7 @@ import NeonButton from '../ui/NeonButton';
 import ProgressBar from '../ui/ProgressBar';
 import { useMatches } from '../../hooks/useMatches';
 import { useGameStore } from '../../store/useGameStore';
+import { playSynthSound } from '../../lib/sound';
 
 const GAME_SYNC_LABELS = {
   valorant: {
@@ -175,10 +176,12 @@ export default function MatchUploader() {
         <div className="flex bg-black/40 p-1 rounded-xl border border-white/5 select-none w-fit">
           <button
             onClick={() => {
+              playSynthSound('click');
               setActiveTab('sync');
               setError(null);
               setUploadSuccess(false);
             }}
+            onMouseEnter={() => playSynthSound('hover')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold tracking-wider transition-all duration-200 ${
               activeTab === 'sync'
                 ? 'bg-[var(--game-accent)] text-black shadow-[0_0_10px_var(--game-glow)]'
@@ -190,10 +193,12 @@ export default function MatchUploader() {
           </button>
           <button
             onClick={() => {
+              playSynthSound('click');
               setActiveTab('upload');
               setError(null);
               setUploadSuccess(false);
             }}
+            onMouseEnter={() => playSynthSound('hover')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold tracking-wider transition-all duration-200 ${
               activeTab === 'upload'
                 ? 'bg-[var(--game-accent)] text-black shadow-[0_0_10px_var(--game-glow)]'
@@ -246,9 +251,11 @@ export default function MatchUploader() {
                 <button
                   key={preset}
                   onClick={() => {
+                    playSynthSound('transition');
                     setPlayerName(preset);
                     handleSyncSubmit(preset);
                   }}
+                  onMouseEnter={() => playSynthSound('hover')}
                   disabled={isLoading}
                   className="text-xs px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 hover:border-[var(--game-accent)]/50 text-slate-300 hover:text-white transition-all cursor-pointer select-none"
                 >

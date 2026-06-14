@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { BrainCircuit, BookOpen, BarChart3, UserCheck, Flame } from 'lucide-react';
+import { BrainCircuit, BookOpen, BarChart3, UserCheck } from 'lucide-react';
 import CoachingReport from '../../components/CoachingReport/CoachingReport';
 import DailyChecklist from '../../components/DailyChecklist/DailyChecklist';
 import ProgressTracker from '../../components/ProgressTracker/ProgressTracker';
 import GlassCard from '../../components/ui/GlassCard';
+import ThreeNeuralCore from '../../components/dashboard/ThreeNeuralCore';
 import { useCoaching } from '../../hooks/useCoaching';
 import { GAME_CONFIGS } from '../../lib/gameConfigs';
+import { playSynthSound } from '../../lib/sound';
 
 export default function CoachingOS() {
   const { currentReport, fetchCoachingReports, activeGame } = useCoaching();
@@ -29,8 +31,8 @@ export default function CoachingOS() {
       <div className="flex justify-between items-center border-b border-white/5 pb-4">
         <div className="space-y-1">
           <div className="flex items-center gap-3">
-            <BrainCircuit className="w-6 h-6 text-[var(--game-accent)]" />
-            <h1 className="font-display font-black text-2xl text-white">COACHING OPERATING SYSTEM</h1>
+            <BrainCircuit className="w-6 h-6 text-[var(--game-accent)] animate-neon-pulse" />
+            <h1 className="font-display font-black text-2xl text-white tracking-wide uppercase">COACHING OPERATING SYSTEM</h1>
           </div>
           <p className="text-xs text-slate-450">
             AI-driven behavioral analysis, daily checklist routines, and progress indexing.
@@ -51,7 +53,11 @@ export default function CoachingOS() {
               return (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
+                  onClick={() => {
+                    playSynthSound('click');
+                    setActiveTab(tab.id);
+                  }}
+                  onMouseEnter={() => playSynthSound('hover')}
                   className={`
                     w-full 
                     flex 
@@ -76,8 +82,13 @@ export default function CoachingOS() {
             })}
           </GlassCard>
 
-          {/* Coach Persona bio details */}
+          {/* Coach Persona bio details with 3D Neural Core */}
           <GlassCard className="flex flex-col gap-4 relative overflow-hidden">
+            {/* Tech 3D Neural Core visual */}
+            <div className="h-48 w-full relative bg-black/40 rounded-xl overflow-hidden border border-white/5">
+              <ThreeNeuralCore activeGame={activeGame} />
+            </div>
+
             <div className="flex items-center gap-3 border-b border-white/5 pb-3">
               <span className="text-3xl animate-float">{coachConfig?.coachAvatar}</span>
               <div>

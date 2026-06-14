@@ -6,12 +6,23 @@ import LoadingSpinner from '../ui/LoadingSpinner';
 import { useChecklist } from '../../hooks/useChecklist';
 import { GAME_CONFIGS } from '../../lib/gameConfigs';
 
+import { playSynthSound } from '../../lib/sound';
+
 export default function DailyChecklist() {
   const { checklist, header, isLoading, fetchChecklist, toggleTask } = useChecklist();
 
   useEffect(() => {
     fetchChecklist();
   }, []);
+
+  const handleToggle = (task) => {
+    if (!task.is_completed) {
+      playSynthSound('success');
+    } else {
+      playSynthSound('click');
+    }
+    toggleTask(task.id, task.completed_count, task.target_count);
+  };
 
   if (isLoading && checklist.length === 0) {
     return (
@@ -88,7 +99,7 @@ export default function DailyChecklist() {
                   <div className="flex-1">
                     <NeonCheckbox
                       checked={task.is_completed}
-                      onChange={() => toggleTask(task.id, task.completed_count, task.target_count)}
+                      onChange={() => handleToggle(task)}
                       label={task.task_description}
                       description={`Category: ${task.category.toUpperCase()} | Game Arena: ${gameConfig?.name}`}
                     />

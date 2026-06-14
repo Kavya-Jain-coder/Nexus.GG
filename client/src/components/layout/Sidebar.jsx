@@ -13,6 +13,7 @@ import {
 import { useUIStore } from '../../store/useUIStore';
 import { useAuthStore } from '../../store/useAuthStore';
 import { supabase } from '../../lib/supabase';
+import { playSynthSound } from '../../lib/sound';
 
 export default function Sidebar() {
   const { sidebarOpen, toggleSidebar } = useUIStore();
@@ -27,7 +28,13 @@ export default function Sidebar() {
   ];
 
   const handleLogout = async () => {
+    playSynthSound('transition');
     await supabase.auth.signOut();
+  };
+
+  const handleCollapseToggle = () => {
+    playSynthSound('click');
+    toggleSidebar();
   };
 
   return (
@@ -53,7 +60,12 @@ export default function Sidebar() {
       {/* Top Section - Brand logo & Collapse trigger */}
       <div>
         <div className="h-20 flex items-center justify-between px-4 border-b border-white/5">
-          <Link to="/dashboard" className="flex items-center select-none overflow-hidden pr-2">
+          <Link 
+            to="/dashboard" 
+            className="flex items-center select-none overflow-hidden pr-2"
+            onClick={() => playSynthSound('click')}
+            onMouseEnter={() => playSynthSound('hover')}
+          >
             <img 
               src="/src/assets/backgrounds/Removed-bg-NexusGG-Logo.png" 
               alt="NEXUS.GG Logo" 
@@ -66,14 +78,14 @@ export default function Sidebar() {
           </Link>
           {sidebarOpen && (
             <button 
-              onClick={toggleSidebar}
+              onClick={handleCollapseToggle}
               className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition-colors"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
           )}
         </div>
-
+ 
         {/* Navigation Items */}
         <nav className="mt-8 px-3 space-y-1">
           {navItems.map((item) => {
@@ -84,6 +96,8 @@ export default function Sidebar() {
               <Link
                 key={item.path}
                 to={item.path}
+                onMouseEnter={() => playSynthSound('hover')}
+                onClick={() => playSynthSound('click')}
                 className={`
                   flex 
                   items-center 
@@ -112,7 +126,7 @@ export default function Sidebar() {
         {!sidebarOpen && (
           <div className="flex flex-col items-center gap-4">
             <button 
-              onClick={toggleSidebar}
+              onClick={handleCollapseToggle}
               className="p-2 rounded-lg bg-white/5 text-slate-400 hover:text-white"
             >
               <Menu className="w-5 h-5" />
@@ -129,9 +143,17 @@ export default function Sidebar() {
         {sidebarOpen && (
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center font-bold text-slate-300 text-lg">
-                {profile?.display_name?.charAt(0).toUpperCase() || 'P'}
-              </div>
+              {profile?.avatar_url ? (
+                <img 
+                  src={profile.avatar_url} 
+                  alt="User Avatar" 
+                  className="w-10 h-10 rounded-xl object-cover border border-white/10" 
+                />
+              ) : (
+                <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center font-bold text-slate-300 text-lg">
+                  {profile?.display_name?.charAt(0).toUpperCase() || 'P'}
+                </div>
+              )}
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-semibold text-white truncate">{profile?.display_name || 'Player'}</p>
                 <p className="text-xs text-slate-500 truncate">@{profile?.username || 'nexus_player'}</p>

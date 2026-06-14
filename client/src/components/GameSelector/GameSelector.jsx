@@ -3,6 +3,7 @@ import GlassCard from '../ui/GlassCard';
 import { GAME_CONFIGS } from '../../lib/gameConfigs';
 import { useGameStore } from '../../store/useGameStore';
 import GameIcon from '../ui/GameIcon';
+import { playSynthSound } from '../../lib/sound';
 
 export default function GameSelector() {
   const { activeGame, setActiveGame, gameProfiles } = useGameStore();
@@ -17,7 +18,11 @@ export default function GameSelector() {
           <GlassCard
             key={game.id}
             hoverGlow={true}
-            onClick={() => setActiveGame(game.id)}
+            onClick={() => {
+              playSynthSound('transition');
+              setActiveGame(game.id);
+            }}
+            onMouseEnter={() => playSynthSound('hover')}
             glowColor={game.glowColor}
             borderColor={isActive ? game.accentColor : 'rgba(255,255,255,0.06)'}
             className={`

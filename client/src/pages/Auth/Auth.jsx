@@ -639,13 +639,13 @@ export default function Auth() {
 
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-black select-none font-display text-white">
-      {/* Background Vignette Overlays to prevent raw image overpowering text */}
-      <div className="absolute inset-0 bg-radial-vignette pointer-events-none z-10" 
+      {/* Subtle edge vignette — keeps backgrounds crisp and vibrant */}
+      <div className="absolute inset-0 pointer-events-none z-10" 
            style={{
-             background: 'radial-gradient(circle at center, transparent 20%, rgba(3,3,7,0.85) 90%)'
+             background: 'radial-gradient(ellipse at center, transparent 40%, rgba(3,3,7,0.6) 100%)'
            }}
       />
-      <div className="absolute inset-0 bg-black/45 pointer-events-none z-10" />
+      <div className="absolute inset-0 bg-black/20 pointer-events-none z-10" />
 
       {/* Background Transition Wrapper */}
       <motion.div
@@ -831,7 +831,7 @@ export default function Auth() {
           {step === 'signup-callsign' && (
             <motion.div 
               animate={shakingInput ? { x: [-10, 10, -10, 10, -5, 5, 0] } : {}}
-              className="absolute left-8 md:left-24 top-[25%] md:top-[30%] max-w-lg w-[85%] text-left z-20 space-y-6 bg-slate-950/80 border border-white/15 rounded-2xl p-8 backdrop-blur-lg shadow-[0_12px_40px_rgba(0,0,0,0.7)]"
+              className="absolute left-8 md:left-24 top-[25%] md:top-[30%] max-w-lg w-[85%] text-left z-20 space-y-6 bg-slate-950/90 border border-white/10 rounded-2xl p-8 shadow-[0_12px_40px_rgba(0,0,0,0.7)]"
             >
               {/* slide-in neon trail indicator */}
               <motion.div 
@@ -885,7 +885,7 @@ export default function Auth() {
               <HexagonGrid />
               <motion.div 
                 animate={shakingInput ? { x: [-10, 10, -10, 10, -5, 5, 0] } : {}}
-                className="absolute left-8 md:left-24 top-[25%] md:top-[30%] max-w-lg w-[85%] text-left z-20 space-y-6 bg-slate-950/80 border border-white/15 rounded-2xl p-8 backdrop-blur-lg shadow-[0_12px_40px_rgba(0,0,0,0.7)]"
+                className="absolute left-8 md:left-24 top-[25%] md:top-[30%] max-w-lg w-[85%] text-left z-20 space-y-6 bg-slate-950/90 border border-white/10 rounded-2xl p-8 shadow-[0_12px_40px_rgba(0,0,0,0.7)]"
               >
                 {/* slide-in neon trail indicator */}
                 <motion.div 
@@ -941,7 +941,7 @@ export default function Auth() {
               
               <motion.div 
                 animate={shakingInput ? { x: [-10, 10, -10, 10, -5, 5, 0] } : {}}
-                className="absolute left-8 md:left-24 top-[25%] md:top-[30%] max-w-lg w-[85%] text-left z-20 space-y-6 bg-slate-950/80 border border-white/15 rounded-2xl p-8 backdrop-blur-lg shadow-[0_12px_40px_rgba(0,0,0,0.7)]"
+                className="absolute left-8 md:left-24 top-[25%] md:top-[30%] max-w-lg w-[85%] text-left z-20 space-y-6 bg-slate-950/90 border border-white/10 rounded-2xl p-8 shadow-[0_12px_40px_rgba(0,0,0,0.7)]"
               >
                 {/* slide-in neon trail indicator */}
                 <motion.div 
@@ -1052,7 +1052,7 @@ export default function Auth() {
               
               <motion.div 
                 animate={shakingInput ? { x: [-10, 10, -10, 10, -5, 5, 0] } : {}}
-                className="absolute left-8 md:left-24 top-[25%] md:top-[30%] max-w-lg w-[85%] text-left z-20 space-y-6 bg-slate-950/80 border border-white/15 rounded-2xl p-8 backdrop-blur-lg shadow-[0_12px_40px_rgba(0,0,0,0.7)]"
+                className="absolute left-8 md:left-24 top-[25%] md:top-[30%] max-w-lg w-[85%] text-left z-20 space-y-6 bg-slate-950/90 border border-white/10 rounded-2xl p-8 shadow-[0_12px_40px_rgba(0,0,0,0.7)]"
               >
                 {/* slide-in neon trail indicator */}
                 <motion.div 
@@ -1108,7 +1108,7 @@ export default function Auth() {
               
               <motion.div 
                 animate={shakingInput ? { x: [-10, 10, -10, 10, -5, 5, 0] } : {}}
-                className="absolute left-8 md:left-24 top-[25%] md:top-[30%] max-w-lg w-[85%] text-left z-20 space-y-6 bg-slate-950/80 border border-white/15 rounded-2xl p-8 backdrop-blur-lg shadow-[0_12px_40px_rgba(0,0,0,0.7)]"
+                className="absolute left-8 md:left-24 top-[25%] md:top-[30%] max-w-lg w-[85%] text-left z-20 space-y-6 bg-slate-950/90 border border-white/10 rounded-2xl p-8 shadow-[0_12px_40px_rgba(0,0,0,0.7)]"
               >
                 {/* slide-in neon trail indicator */}
                 <motion.div 

@@ -15,6 +15,7 @@ import valorantBg from '../../assets/backgrounds/valorant-bg.jpg';
 import cs2Bg from '../../assets/backgrounds/cs2-bg.jpg';
 import lolBg from '../../assets/backgrounds/lol-bg.jpg';
 import pubgBg from '../../assets/backgrounds/pubg-bg.jpg';
+import fortniteBg from '../../assets/backgrounds/fortnite-bg.jpg';
 import logoPng from '../../assets/backgrounds/Removed-bg-NexusGG-Logo.png';
 
 // Web Audio API sci-fi synthesizer sound engine (no external audio files required!)
@@ -622,13 +623,14 @@ export default function Auth() {
       case 'signup-callsign':
         return valorantBg;
       case 'signup-email':
-      case 'login-cipher':
-        return cs2Bg;
+        return fortniteBg;
       case 'signup-password':
       case 'login-identify':
         return lolBg;
-      case 'signup-battlefield':
+      case 'login-cipher':
         return pubgBg;
+      case 'signup-battlefield':
+        return cs2Bg;
       case 'signup-initializing':
       case 'login-welcome':
         return heroTunnel;

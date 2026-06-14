@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowRight, Lock, Mail, User, Volume2, VolumeX, AlertCircle, CheckCircle } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Lock, Mail, User, Volume2, VolumeX, AlertCircle, CheckCircle, Eye, EyeOff } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { useAuthStore } from '../../store/useAuthStore';
 import { useGameStore } from '../../store/useGameStore';
@@ -321,6 +321,7 @@ export default function Auth() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [selectedGame, setSelectedGame] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   // UI state feedback
   const [gateTerminalDone, setGateTerminalDone] = useState(false);
@@ -380,6 +381,7 @@ export default function Auth() {
   // Custom step navigator supporting back history direction
   const navigateStep = (nextStep) => {
     setInputError('');
+    setShowPassword(false);
     setDirection(1);
     setHistory((prev) => [...prev, nextStep]);
     setStep(nextStep);
@@ -389,6 +391,7 @@ export default function Auth() {
     if (history.length <= 1) return;
     playSynthSound('click', isMuted);
     setInputError('');
+    setShowPassword(false);
     setDirection(-1);
     const updatedHistory = [...history];
     updatedHistory.pop(); // Remove current
@@ -938,13 +941,13 @@ export default function Auth() {
 
                 <form onSubmit={handlePasswordNext} className="relative w-full pt-4">
                   <input
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     required
                     autoFocus
                     placeholder="••••••••••••"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className={`w-full bg-transparent border-b-2 border-white/10 text-white font-mono text-xl md:text-2xl pb-3 focus:outline-none transition-all duration-300 text-left
+                    className={`w-full bg-transparent border-b-2 border-white/10 text-white font-mono text-xl md:text-2xl pb-3 pr-20 focus:outline-none transition-all duration-300 text-left
                       ${pulseSuccess ? 'border-emerald-500 shadow-[0_4px_15px_rgba(16,185,129,0.3)]' : 'focus:border-yellow-500 focus:shadow-[0_4px_15px_rgba(212,175,55,0.25)]'}
                     `}
                   />
@@ -954,6 +957,16 @@ export default function Auth() {
                       <AlertCircle className="w-3.5 h-3.5" /> {inputError}
                     </p>
                   )}
+
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    onMouseEnter={handleHover}
+                    className="absolute right-10 bottom-3 p-1 text-slate-455 hover:text-white transition-colors"
+                    title={showPassword ? "Hide password" : "Show password"}
+                  >
+                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  </button>
 
                   <button
                     type="submit"
@@ -1077,13 +1090,13 @@ export default function Auth() {
 
                 <form onSubmit={handlePasswordNext} className="relative w-full pt-4">
                   <input
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     required
                     autoFocus
                     placeholder="••••••••••••"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className={`w-full bg-transparent border-b-2 border-white/10 text-white font-mono text-xl md:text-2xl pb-3 focus:outline-none transition-all duration-300 text-left
+                    className={`w-full bg-transparent border-b-2 border-white/10 text-white font-mono text-xl md:text-2xl pb-3 pr-20 focus:outline-none transition-all duration-300 text-left
                       ${pulseSuccess ? 'border-emerald-500 shadow-[0_4px_15px_rgba(16,185,129,0.3)]' : 'focus:border-cyan-400 focus:shadow-[0_4px_15px_rgba(0,240,255,0.25)]'}
                     `}
                   />
@@ -1093,6 +1106,16 @@ export default function Auth() {
                       <AlertCircle className="w-3.5 h-3.5" /> {inputError}
                     </p>
                   )}
+
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    onMouseEnter={handleHover}
+                    className="absolute right-10 bottom-3 p-1 text-slate-400 hover:text-white transition-colors"
+                    title={showPassword ? "Hide password" : "Show password"}
+                  >
+                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  </button>
 
                   <button
                     type="submit"

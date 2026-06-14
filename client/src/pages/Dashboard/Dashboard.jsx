@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Sparkles, Trophy, Award, Gamepad2, ArrowRight, Maximize2, X, RotateCw, ChevronDown, ChevronUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import GameSelector from '../../components/GameSelector/GameSelector';

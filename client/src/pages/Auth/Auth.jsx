@@ -831,7 +831,7 @@ export default function Auth() {
           {step === 'signup-callsign' && (
             <motion.div 
               animate={shakingInput ? { x: [-10, 10, -10, 10, -5, 5, 0] } : {}}
-              className="absolute left-8 md:left-24 top-[35%] max-w-lg w-[85%] text-left z-20 space-y-6"
+              className="absolute left-8 md:left-24 top-[25%] md:top-[30%] max-w-lg w-[85%] text-left z-20 space-y-6 bg-slate-950/80 border border-white/15 rounded-2xl p-8 backdrop-blur-lg shadow-[0_12px_40px_rgba(0,0,0,0.7)]"
             >
               {/* slide-in neon trail indicator */}
               <motion.div 
@@ -843,81 +843,92 @@ export default function Auth() {
               <h2 className="font-display font-black text-3xl md:text-4xl text-white tracking-wide leading-tight">
                 CHOOSE YOUR CALLSIGN
               </h2>
-              <p className="text-xs text-slate-450 uppercase tracking-widest font-mono">
+              <p className="text-xs text-slate-300 uppercase tracking-widest font-mono">
                 Input your global operating handle (Username)
               </p>
               
-              <form onSubmit={handleCallsgnNext} className="relative w-full pt-4">
-                <input
-                  type="text"
-                  required
-                  autoFocus
-                  placeholder="AGENT_COACH_99"
-                  value={callsign}
-                  onChange={(e) => setCallsign(e.target.value)}
-                  className={`w-full bg-transparent border-b-2 border-white/10 text-white font-mono text-xl md:text-2xl pb-3 focus:outline-none transition-all duration-300 text-left
-                    ${pulseSuccess ? 'border-emerald-500 shadow-[0_4px_15px_rgba(16,185,129,0.3)]' : 'focus:border-pink-500 focus:shadow-[0_4px_15px_rgba(255,70,85,0.25)]'}
-                  `}
-                />
+              <form onSubmit={handleCallsgnNext} className="relative w-full pt-2">
+                <div className="relative flex items-center">
+                  <input
+                    type="text"
+                    required
+                    autoFocus
+                    placeholder="AGENT_COACH_99"
+                    value={callsign}
+                    onChange={(e) => setCallsign(e.target.value)}
+                    className={`w-full bg-slate-900/60 border-2 border-white/20 text-white font-mono text-lg rounded-xl px-4 py-3.5 pr-14 focus:outline-none transition-all duration-300 text-left
+                      ${pulseSuccess ? 'border-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.35)]' : 'focus:border-pink-500 focus:shadow-[0_0_15px_rgba(255,70,85,0.3)]'}
+                    `}
+                  />
+                  
+                  <button
+                    type="submit"
+                    onMouseEnter={handleHover}
+                    className="absolute right-3 p-2 text-slate-400 hover:text-pink-500 transition-colors"
+                  >
+                    <ArrowRight className="w-6 h-6" />
+                  </button>
+                </div>
                 
                 {inputError && (
                   <p className="text-xs text-pink-500 font-mono mt-3 flex items-center gap-1.5 animate-float-in">
                     <AlertCircle className="w-3.5 h-3.5" /> {inputError}
                   </p>
                 )}
-
-                <button
-                  type="submit"
-                  onMouseEnter={handleHover}
-                  className="absolute right-0 bottom-3 p-1 text-slate-450 hover:text-pink-500 transition-colors"
-                >
-                  <ArrowRight className="w-6 h-6" />
-                </button>
               </form>
             </motion.div>
           )}
 
           {/* STEP 3A - Q2: DROP EMAIL (CS2 Hexagons Background) */}
           {step === 'signup-email' && (
-            <div className="w-full h-full relative flex items-center justify-center">
+            <div className="w-full h-full relative">
               <HexagonGrid />
               <motion.div 
                 animate={shakingInput ? { x: [-10, 10, -10, 10, -5, 5, 0] } : {}}
-                className="absolute bottom-28 left-1/2 -translate-x-1/2 max-w-lg w-[85%] text-center z-20 space-y-6"
+                className="absolute left-8 md:left-24 top-[25%] md:top-[30%] max-w-lg w-[85%] text-left z-20 space-y-6 bg-slate-950/80 border border-white/15 rounded-2xl p-8 backdrop-blur-lg shadow-[0_12px_40px_rgba(0,0,0,0.7)]"
               >
+                {/* slide-in neon trail indicator */}
+                <motion.div 
+                  initial={{ width: 0 }}
+                  animate={{ width: 64 }}
+                  transition={{ duration: 0.6 }}
+                  className="h-1.5 bg-cyan-400 rounded-full shadow-[0_0_10px_#00f0ff]" 
+                />
                 <h2 className="font-display font-black text-3xl md:text-4xl text-white tracking-wide">
                   DROP YOUR EMAIL, AGENT
                 </h2>
-                <p className="text-xs text-slate-400 uppercase tracking-widest font-mono">
+                <p className="text-xs text-slate-300 uppercase tracking-widest font-mono">
                   Enter your secure telemetry receiving address
                 </p>
 
-                <form onSubmit={handleEmailNext} className="relative w-full pt-4">
-                  <input
-                    type="email"
-                    required
-                    autoFocus
-                    placeholder="agent@nexus.gg"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className={`w-full bg-transparent border-b-2 border-white/10 text-white font-mono text-lg md:text-xl pb-3 focus:outline-none transition-all duration-300 text-center
-                      ${pulseSuccess ? 'border-emerald-500 shadow-[0_4px_15px_rgba(16,185,129,0.3)]' : 'focus:border-cyan-400 focus:shadow-[0_4px_15px_rgba(0,240,255,0.25)]'}
-                    `}
-                  />
+                <form onSubmit={handleEmailNext} className="relative w-full pt-2">
+                  <div className="relative flex items-center">
+                    <input
+                      type="email"
+                      required
+                      autoFocus
+                      placeholder="agent@nexus.gg"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className={`w-full bg-slate-900/60 border-2 border-white/20 text-white font-mono text-lg rounded-xl px-4 py-3.5 pr-14 focus:outline-none transition-all duration-300 text-left
+                        ${pulseSuccess ? 'border-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.35)]' : 'focus:border-cyan-400 focus:shadow-[0_0_15px_rgba(0,240,255,0.3)]'}
+                      `}
+                    />
+
+                    <button
+                      type="submit"
+                      onMouseEnter={handleHover}
+                      className="absolute right-3 p-2 text-slate-400 hover:text-cyan-400 transition-colors"
+                    >
+                      <ArrowRight className="w-6 h-6" />
+                    </button>
+                  </div>
 
                   {inputError && (
-                    <p className="text-xs text-cyan-400 font-mono mt-3 flex items-center justify-center gap-1.5 animate-float-in">
+                    <p className="text-xs text-cyan-400 font-mono mt-3 flex items-center gap-1.5 animate-float-in">
                       <AlertCircle className="w-3.5 h-3.5 text-cyan-400" /> {inputError}
                     </p>
                   )}
-
-                  <button
-                    type="submit"
-                    onMouseEnter={handleHover}
-                    className="absolute right-2 bottom-3 p-1 text-slate-400 hover:text-cyan-400 transition-colors"
-                  >
-                    <ArrowRight className="w-6 h-6" />
-                  </button>
                 </form>
               </motion.div>
             </div>
@@ -930,51 +941,60 @@ export default function Auth() {
               
               <motion.div 
                 animate={shakingInput ? { x: [-10, 10, -10, 10, -5, 5, 0] } : {}}
-                className="absolute left-8 md:left-24 top-[35%] max-w-lg w-[85%] text-left z-20 space-y-6"
+                className="absolute left-8 md:left-24 top-[25%] md:top-[30%] max-w-lg w-[85%] text-left z-20 space-y-6 bg-slate-950/80 border border-white/15 rounded-2xl p-8 backdrop-blur-lg shadow-[0_12px_40px_rgba(0,0,0,0.7)]"
               >
+                {/* slide-in neon trail indicator */}
+                <motion.div 
+                  initial={{ width: 0 }}
+                  animate={{ width: 64 }}
+                  transition={{ duration: 0.6 }}
+                  className="h-1.5 bg-yellow-500 rounded-full shadow-[0_0_10px_#c8aa6e]" 
+                />
                 <h2 className="font-display font-black text-3xl md:text-4xl text-white tracking-wide">
                   SET YOUR ENCRYPTION KEY
                 </h2>
-                <p className="text-xs text-slate-450 uppercase tracking-widest font-mono">
+                <p className="text-xs text-slate-300 uppercase tracking-widest font-mono">
                   Establish a secure access password profile
                 </p>
 
-                <form onSubmit={handlePasswordNext} className="relative w-full pt-4">
-                  <input
-                    type={showPassword ? 'text' : 'password'}
-                    required
-                    autoFocus
-                    placeholder="••••••••••••"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className={`w-full bg-transparent border-b-2 border-white/10 text-white font-mono text-xl md:text-2xl pb-3 pr-20 focus:outline-none transition-all duration-300 text-left
-                      ${pulseSuccess ? 'border-emerald-500 shadow-[0_4px_15px_rgba(16,185,129,0.3)]' : 'focus:border-yellow-500 focus:shadow-[0_4px_15px_rgba(212,175,55,0.25)]'}
-                    `}
-                  />
+                <form onSubmit={handlePasswordNext} className="relative w-full pt-2">
+                  <div className="relative flex items-center">
+                    <input
+                      type={showPassword ? 'text' : 'password'}
+                      required
+                      autoFocus
+                      placeholder="••••••••••••"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className={`w-full bg-slate-900/60 border-2 border-white/20 text-white font-mono text-lg rounded-xl px-4 py-3.5 pr-24 focus:outline-none transition-all duration-300 text-left
+                        ${pulseSuccess ? 'border-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.35)]' : 'focus:border-yellow-500 focus:shadow-[0_0_15px_rgba(212,175,55,0.3)]'}
+                      `}
+                    />
+
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      onMouseEnter={handleHover}
+                      className="absolute right-12 p-2 text-slate-400 hover:text-white transition-colors"
+                      title={showPassword ? "Hide password" : "Show password"}
+                    >
+                      {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                    </button>
+
+                    <button
+                      type="submit"
+                      onMouseEnter={handleHover}
+                      className="absolute right-3 p-2 text-slate-400 hover:text-yellow-500 transition-colors"
+                    >
+                      <ArrowRight className="w-6 h-6" />
+                    </button>
+                  </div>
 
                   {inputError && (
                     <p className="text-xs text-yellow-500 font-mono mt-3 flex items-center gap-1.5 animate-float-in">
                       <AlertCircle className="w-3.5 h-3.5" /> {inputError}
                     </p>
                   )}
-
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    onMouseEnter={handleHover}
-                    className="absolute right-10 bottom-3 p-1 text-slate-455 hover:text-white transition-colors"
-                    title={showPassword ? "Hide password" : "Show password"}
-                  >
-                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-                  </button>
-
-                  <button
-                    type="submit"
-                    onMouseEnter={handleHover}
-                    className="absolute right-0 bottom-3 p-1 text-slate-450 hover:text-yellow-500 transition-colors"
-                  >
-                    <ArrowRight className="w-6 h-6" />
-                  </button>
                 </form>
               </motion.div>
             </div>
@@ -986,7 +1006,7 @@ export default function Auth() {
               <h2 className="font-display font-black text-3xl md:text-4xl text-white tracking-widest uppercase drop-shadow-[0_0_8px_rgba(255,255,255,0.15)]">
                 SELECT YOUR BATTLEFIELD
               </h2>
-              <p className="text-xs text-slate-400 font-mono tracking-widest uppercase">
+              <p className="text-xs text-slate-300 font-mono tracking-widest uppercase">
                 Choose your primary tactical game training theater
               </p>
 
@@ -1032,41 +1052,50 @@ export default function Auth() {
               
               <motion.div 
                 animate={shakingInput ? { x: [-10, 10, -10, 10, -5, 5, 0] } : {}}
-                className="absolute left-8 md:left-24 top-[35%] max-w-lg w-[85%] text-left z-20 space-y-6"
+                className="absolute left-8 md:left-24 top-[25%] md:top-[30%] max-w-lg w-[85%] text-left z-20 space-y-6 bg-slate-950/80 border border-white/15 rounded-2xl p-8 backdrop-blur-lg shadow-[0_12px_40px_rgba(0,0,0,0.7)]"
               >
+                {/* slide-in neon trail indicator */}
+                <motion.div 
+                  initial={{ width: 0 }}
+                  animate={{ width: 64 }}
+                  transition={{ duration: 0.6 }}
+                  className="h-1.5 bg-yellow-500 rounded-full shadow-[0_0_10px_#c8aa6e]" 
+                />
                 <h2 className="font-display font-black text-3xl md:text-4xl text-white tracking-wide leading-tight">
                   IDENTIFY YOURSELF
                 </h2>
-                <p className="text-xs text-slate-450 uppercase tracking-widest font-mono">
+                <p className="text-xs text-slate-300 uppercase tracking-widest font-mono">
                   Input your tactical agent email address
                 </p>
 
-                <form onSubmit={handleEmailNext} className="relative w-full pt-4">
-                  <input
-                    type="email"
-                    required
-                    autoFocus
-                    placeholder="agent@nexus.gg"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className={`w-full bg-transparent border-b-2 border-white/10 text-white font-mono text-xl md:text-2xl pb-3 focus:outline-none transition-all duration-300 text-left
-                      ${pulseSuccess ? 'border-emerald-500 shadow-[0_4px_15px_rgba(16,185,129,0.3)]' : 'focus:border-yellow-500 focus:shadow-[0_4px_15px_rgba(212,175,55,0.25)]'}
-                    `}
-                  />
+                <form onSubmit={handleEmailNext} className="relative w-full pt-2">
+                  <div className="relative flex items-center">
+                    <input
+                      type="email"
+                      required
+                      autoFocus
+                      placeholder="agent@nexus.gg"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className={`w-full bg-slate-900/60 border-2 border-white/20 text-white font-mono text-lg rounded-xl px-4 py-3.5 pr-14 focus:outline-none transition-all duration-300 text-left
+                        ${pulseSuccess ? 'border-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.35)]' : 'focus:border-yellow-500 focus:shadow-[0_0_15px_rgba(212,175,55,0.3)]'}
+                      `}
+                    />
+
+                    <button
+                      type="submit"
+                      onMouseEnter={handleHover}
+                      className="absolute right-3 p-2 text-slate-400 hover:text-yellow-500 transition-colors"
+                    >
+                      <ArrowRight className="w-6 h-6" />
+                    </button>
+                  </div>
 
                   {inputError && (
                     <p className="text-xs text-yellow-500 font-mono mt-3 flex items-center gap-1.5 animate-float-in">
                       <AlertCircle className="w-3.5 h-3.5" /> {inputError}
                     </p>
                   )}
-
-                  <button
-                    type="submit"
-                    onMouseEnter={handleHover}
-                    className="absolute right-0 bottom-3 p-1 text-slate-450 hover:text-yellow-500 transition-colors"
-                  >
-                    <ArrowRight className="w-6 h-6" />
-                  </button>
                 </form>
               </motion.div>
             </div>
@@ -1079,51 +1108,60 @@ export default function Auth() {
               
               <motion.div 
                 animate={shakingInput ? { x: [-10, 10, -10, 10, -5, 5, 0] } : {}}
-                className="absolute left-8 md:left-24 top-[35%] max-w-lg w-[85%] text-left z-20 space-y-6"
+                className="absolute left-8 md:left-24 top-[25%] md:top-[30%] max-w-lg w-[85%] text-left z-20 space-y-6 bg-slate-950/80 border border-white/15 rounded-2xl p-8 backdrop-blur-lg shadow-[0_12px_40px_rgba(0,0,0,0.7)]"
               >
+                {/* slide-in neon trail indicator */}
+                <motion.div 
+                  initial={{ width: 0 }}
+                  animate={{ width: 64 }}
+                  transition={{ duration: 0.6 }}
+                  className="h-1.5 bg-cyan-400 rounded-full shadow-[0_0_10px_#00f0ff]" 
+                />
                 <h2 className="font-display font-black text-3xl md:text-4xl text-white tracking-wide">
                   CONFIRM YOUR CIPHER
                 </h2>
-                <p className="text-xs text-slate-400 uppercase tracking-widest font-mono">
+                <p className="text-xs text-slate-300 uppercase tracking-widest font-mono">
                   Input password authentication coordinates
                 </p>
 
-                <form onSubmit={handlePasswordNext} className="relative w-full pt-4">
-                  <input
-                    type={showPassword ? 'text' : 'password'}
-                    required
-                    autoFocus
-                    placeholder="••••••••••••"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className={`w-full bg-transparent border-b-2 border-white/10 text-white font-mono text-xl md:text-2xl pb-3 pr-20 focus:outline-none transition-all duration-300 text-left
-                      ${pulseSuccess ? 'border-emerald-500 shadow-[0_4px_15px_rgba(16,185,129,0.3)]' : 'focus:border-cyan-400 focus:shadow-[0_4px_15px_rgba(0,240,255,0.25)]'}
-                    `}
-                  />
+                <form onSubmit={handlePasswordNext} className="relative w-full pt-2">
+                  <div className="relative flex items-center">
+                    <input
+                      type={showPassword ? 'text' : 'password'}
+                      required
+                      autoFocus
+                      placeholder="••••••••••••"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className={`w-full bg-slate-900/60 border-2 border-white/20 text-white font-mono text-lg rounded-xl px-4 py-3.5 pr-24 focus:outline-none transition-all duration-300 text-left
+                        ${pulseSuccess ? 'border-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.35)]' : 'focus:border-cyan-400 focus:shadow-[0_0_15px_rgba(0,240,255,0.25)]'}
+                      `}
+                    />
+
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      onMouseEnter={handleHover}
+                      className="absolute right-12 p-2 text-slate-400 hover:text-white transition-colors"
+                      title={showPassword ? "Hide password" : "Show password"}
+                    >
+                      {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                    </button>
+
+                    <button
+                      type="submit"
+                      onMouseEnter={handleHover}
+                      className="absolute right-3 p-2 text-slate-400 hover:text-cyan-400 transition-colors"
+                    >
+                      <ArrowRight className="w-6 h-6" />
+                    </button>
+                  </div>
 
                   {inputError && (
                     <p className="text-xs text-cyan-400 font-mono mt-3 flex items-center gap-1.5 animate-float-in">
                       <AlertCircle className="w-3.5 h-3.5" /> {inputError}
                     </p>
                   )}
-
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    onMouseEnter={handleHover}
-                    className="absolute right-10 bottom-3 p-1 text-slate-400 hover:text-white transition-colors"
-                    title={showPassword ? "Hide password" : "Show password"}
-                  >
-                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-                  </button>
-
-                  <button
-                    type="submit"
-                    onMouseEnter={handleHover}
-                    className="absolute right-0 bottom-3 p-1 text-slate-400 hover:text-cyan-400 transition-colors"
-                  >
-                    <ArrowRight className="w-6 h-6" />
-                  </button>
                 </form>
               </motion.div>
             </div>

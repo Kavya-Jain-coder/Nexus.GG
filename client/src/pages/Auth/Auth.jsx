@@ -787,7 +787,7 @@ export default function Auth() {
 
                 {/* Staggered Glassmorphism Decision Cards */}
                 {gateTerminalDone && (
-                  <div className="flex flex-col sm:flex-row justify-end items-end gap-6 pt-6">
+                  <div className="flex flex-col sm:flex-row justify-end items-stretch gap-6 pt-6">
                     <motion.div
                       initial={{ opacity: 0, x: -50, scale: 0.95 }}
                       animate={{ opacity: 1, x: 0, scale: 1 }}

@@ -120,7 +120,7 @@ export default function Dashboard() {
               onClick={() => playSynthSound('transition')}
             >
               <NeonButton className="gap-2 select-none">
-                <span>LAUNCH COACHING TERMINAL</span>
+                <span>LAUNCH NEXUS AI TERMINAL</span>
                 <ArrowRight className="w-4 h-4" />
               </NeonButton>
             </Link>

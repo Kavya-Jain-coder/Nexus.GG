@@ -26,7 +26,7 @@ export default function Sidebar() {
   const navItems = [
     { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
     { name: 'Game Arena', path: '/arena', icon: Sword },
-    { name: 'Coaching OS', path: '/coaching', icon: BrainCircuit },
+    { name: 'Nexus AI', path: '/coaching', icon: BrainCircuit },
     { name: 'Profile', path: '/profile', icon: User },
   ];
 

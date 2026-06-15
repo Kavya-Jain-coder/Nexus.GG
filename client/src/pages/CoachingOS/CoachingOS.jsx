@@ -20,7 +20,7 @@ export default function CoachingOS() {
   const coachConfig = GAME_CONFIGS[activeGame || 'valorant'];
 
   const tabs = [
-    { id: 'report', name: 'Coaching Session', icon: BookOpen },
+    { id: 'report', name: 'Nexus AI Session', icon: BookOpen },
     { id: 'checklist', name: 'Drill Program', icon: UserCheck },
     { id: 'progress', name: 'Metrics Progress', icon: BarChart3 },
   ];
@@ -32,7 +32,7 @@ export default function CoachingOS() {
         <div className="space-y-1">
           <div className="flex items-center gap-3">
             <BrainCircuit className="w-6 h-6 text-[var(--game-accent)] animate-neon-pulse" />
-            <h1 className="font-display font-black text-2xl text-white tracking-wide uppercase">COACHING OPERATING SYSTEM</h1>
+            <h1 className="font-display font-black text-2xl text-white tracking-wide uppercase">NEXUS AI SYSTEM</h1>
           </div>
           <p className="text-xs text-slate-450">
             AI-driven behavioral analysis, daily checklist routines, and progress indexing.

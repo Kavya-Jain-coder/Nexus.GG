@@ -70,7 +70,7 @@ export default function Landing() {
           {/* Tag */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/25 text-purple-400 text-xs font-semibold tracking-wider uppercase animate-pulse">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>AI Game Coaching Operating System</span>
+            <span>Nexus AI Game Operating System</span>
           </div>
 
           {/* Heading */}

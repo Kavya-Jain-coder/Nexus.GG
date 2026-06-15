@@ -757,7 +757,7 @@ export default function Auth() {
               {showTagline && (
                 <div className="h-6">
                   <span className="font-mono text-xs md:text-sm font-black text-cyan-400 tracking-[0.3em] uppercase block drop-shadow-[0_0_8px_rgba(0,240,255,0.5)]">
-                    <Typewriter text="YOUR COACHING OPERATING SYSTEM" delay={40} isMuted={isMuted} />
+                    <Typewriter text="YOUR NEXUS AI SYSTEM" delay={40} isMuted={isMuted} />
                   </span>
                 </div>
               )}

@@ -190,7 +190,7 @@ export default function Profile() {
           </div>
 
           {/* Game Tabs */}
-          <div className="flex bg-black/40 p-1 rounded-xl border border-white/5 select-none w-fit shrink-0">
+          <div className="flex bg-black/40 p-1 rounded-xl border border-white/5 select-none w-full sm:w-fit overflow-x-auto shrink-0 gap-1 scrollbar-none">
             {Object.keys(BUILTIN_AVATARS).map((gameKey) => (
               <button
                 key={gameKey}
@@ -199,7 +199,7 @@ export default function Profile() {
                   setActiveTab(gameKey);
                 }}
                 onMouseEnter={() => playSynthSound('hover')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-mono tracking-widest uppercase transition-all duration-200 ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-mono tracking-widest uppercase transition-all duration-200 shrink-0 ${
                   activeTab === gameKey
                     ? 'bg-[var(--game-accent)] text-black font-bold shadow-[0_0_10px_var(--game-glow)]'
                     : 'text-slate-400 hover:text-white'

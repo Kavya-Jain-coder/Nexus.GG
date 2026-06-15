@@ -60,7 +60,7 @@ export default function Navbar() {
       <header 
         className={`fixed top-0 right-0 ${
           sidebarOpen ? 'left-0 lg:left-64' : 'left-0 lg:left-20'
-        } h-20 z-20 glass-panel border-b border-white/5 px-4 sm:px-8 flex items-center justify-between pointer-events-auto transition-all duration-300 ${
+        } h-20 z-20 glass-panel border-b border-white/5 px-3 sm:px-8 flex items-center justify-between pointer-events-auto transition-all duration-300 ${
           navbarCollapsed ? 'transform -translate-y-full' : ''
         }`}
       >
@@ -71,9 +71,9 @@ export default function Navbar() {
             playSynthSound('click');
             toggleSidebar();
           }}
-          className="p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-slate-400 text-slate-300 hover:text-white transition-all"
+          className="p-2 sm:p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-slate-400 text-slate-300 hover:text-white transition-all"
         >
-          <Menu className="w-5 h-5" />
+          <Menu className="w-[18px] h-[18px] sm:w-5 sm:h-5" />
         </button>
       </div>
       <div className="hidden lg:flex items-center" />
@@ -83,13 +83,14 @@ export default function Navbar() {
         <button
           onClick={handleDropdownToggle}
           onMouseEnter={() => playSynthSound('hover')}
-          className="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-[var(--game-accent)] hover:shadow-[0_0_15px_var(--game-glow)] transition-all select-none"
+          className="flex items-center gap-1.5 sm:gap-3 px-2 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-[var(--game-accent)] hover:shadow-[0_0_15px_var(--game-glow)] transition-all select-none"
         >
-          <Gamepad2 className="w-5 h-5 text-[var(--game-accent)]" />
-          <span className="font-semibold text-sm tracking-wide text-white">
-            {GAME_CONFIGS[activeGame]?.name}
+          <Gamepad2 className="w-[18px] h-[18px] sm:w-5 sm:h-5 text-[var(--game-accent)]" />
+          <span className="font-semibold text-xs sm:text-sm tracking-wide text-white">
+            <span className="hidden sm:inline">{GAME_CONFIGS[activeGame]?.name}</span>
+            <span className="sm:hidden">{GAME_CONFIGS[activeGame]?.shortName || GAME_CONFIGS[activeGame]?.name}</span>
           </span>
-          <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} />
+          <ChevronDown className={`w-[14px] h-[14px] sm:w-4 sm:h-4 text-slate-400 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} />
         </button>
 
         {dropdownOpen && (
@@ -128,7 +129,7 @@ export default function Navbar() {
       </div>
 
       {/* Right Side Info: Level, Streak, Sound, Notifications */}
-      <div className="flex items-center gap-2 sm:gap-4">
+      <div className="flex items-center gap-1.5 sm:gap-4">
         {/* Rank & Level Badge */}
         <div className="hidden sm:flex flex-col items-end">
           <div className="flex items-center gap-1.5">
@@ -142,11 +143,11 @@ export default function Navbar() {
 
         {/* Streak Counter */}
         <div 
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-orange-500/10 border border-orange-500/25 select-none"
+          className="flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-3 sm:py-1.5 rounded-xl bg-orange-500/10 border border-orange-500/25 select-none"
           title="Daily checklist streak"
         >
-          <Flame className="w-5 h-5 text-orange-500 animate-pulse" />
-          <span className="font-mono font-bold text-sm text-orange-400">
+          <Flame className="w-[18px] h-[18px] sm:w-5 sm:h-5 text-orange-500 animate-pulse" />
+          <span className="font-mono font-bold text-xs sm:text-sm text-orange-400">
             {streaks?.current_streak || 0}
           </span>
         </div>
@@ -166,9 +167,9 @@ export default function Navbar() {
           <button
             onClick={handleNotificationsToggle}
             onMouseEnter={() => playSynthSound('hover')}
-            className="p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-slate-400 text-slate-300 hover:text-white transition-all relative"
+            className="p-2 sm:p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-slate-400 text-slate-300 hover:text-white transition-all relative"
           >
-            <Bell className="w-5 h-5" />
+            <Bell className="w-[18px] h-[18px] sm:w-5 sm:h-5" />
             {notifications.length > 0 && (
               <span className="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-red-500 text-[9px] font-bold text-white flex items-center justify-center border border-[#080810]">
                 {notifications.length}

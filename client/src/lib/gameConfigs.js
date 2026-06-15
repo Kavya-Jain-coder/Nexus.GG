@@ -9,6 +9,7 @@ export const GAME_CONFIGS = {
   valorant: {
     id: 'valorant',
     name: 'Valorant',
+    shortName: 'VAL',
     accentColor: '#ff4655',
     glowColor: 'rgba(255, 70, 85, 0.45)',
     bgClass: 'theme-valorant',
@@ -27,6 +28,7 @@ export const GAME_CONFIGS = {
   cs2: {
     id: 'cs2',
     name: 'CS2',
+    shortName: 'CS2',
     accentColor: '#de9b35',
     glowColor: 'rgba(222, 155, 53, 0.45)',
     bgClass: 'theme-cs2',
@@ -45,6 +47,7 @@ export const GAME_CONFIGS = {
   lol: {
     id: 'lol',
     name: 'League of Legends',
+    shortName: 'LoL',
     accentColor: '#c8aa6e',
     glowColor: 'rgba(200, 170, 110, 0.45)',
     bgClass: 'theme-lol',
@@ -63,6 +66,7 @@ export const GAME_CONFIGS = {
   fortnite: {
     id: 'fortnite',
     name: 'Fortnite',
+    shortName: 'FN',
     accentColor: '#00f0ff',
     glowColor: 'rgba(0, 240, 255, 0.45)',
     bgClass: 'theme-fortnite',
@@ -81,6 +85,7 @@ export const GAME_CONFIGS = {
   pubg: {
     id: 'pubg',
     name: 'PUBG',
+    shortName: 'PUBG',
     accentColor: '#f25c05',
     glowColor: 'rgba(242, 92, 5, 0.45)',
     bgClass: 'theme-pubg',

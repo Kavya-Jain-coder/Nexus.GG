@@ -45,7 +45,6 @@ export default function Sidebar() {
       className={`
         fixed 
         top-0 
-        left-0 
         h-screen 
         z-30 
         glass-panel 
@@ -57,7 +56,10 @@ export default function Sidebar() {
         transition-all 
         duration-350 
         ease-in-out
-        ${sidebarOpen ? 'w-64' : 'w-20'}
+        ${sidebarOpen 
+          ? 'w-64 left-0 translate-x-0' 
+          : 'w-20 -translate-x-full lg:translate-x-0 lg:left-0'
+        }
       `}
     >
       {/* Top Section - Brand logo & Collapse trigger */}

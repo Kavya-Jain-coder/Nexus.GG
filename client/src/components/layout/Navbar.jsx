@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Flame, Bell, ChevronDown, ChevronUp, Gamepad2, Volume2, VolumeX } from 'lucide-react';
+import { Flame, Bell, ChevronDown, ChevronUp, Gamepad2, Volume2, VolumeX, Menu } from 'lucide-react';
 import { useGameStore } from '../../store/useGameStore';
 import { useUIStore } from '../../store/useUIStore';
 import { GAME_CONFIGS } from '../../lib/gameConfigs';
@@ -59,13 +59,24 @@ export default function Navbar() {
 
       <header 
         className={`fixed top-0 right-0 ${
-          sidebarOpen ? 'left-20 md:left-64' : 'left-20'
+          sidebarOpen ? 'left-0 lg:left-64' : 'left-0 lg:left-20'
         } h-20 z-20 glass-panel border-b border-white/5 px-6 sm:px-8 flex items-center justify-between pointer-events-auto transition-all duration-300 ${
           navbarCollapsed ? 'transform -translate-y-full' : ''
         }`}
       >
-      {/* Left side empty space to match sidebar spacing, or breadcrumbs if desired */}
-      <div className="flex items-center" />
+      {/* Mobile Sidebar Toggle Burger Button */}
+      <div className="flex items-center lg:hidden">
+        <button
+          onClick={() => {
+            playSynthSound('click');
+            toggleSidebar();
+          }}
+          className="p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-slate-400 text-slate-300 hover:text-white transition-all"
+        >
+          <Menu className="w-5 h-5" />
+        </button>
+      </div>
+      <div className="hidden lg:flex items-center" />
 
       {/* Game Selector Dropdown (Centering using absolute position inside the navbar) */}
       <div className="absolute left-1/2 -translate-x-1/2 z-30">

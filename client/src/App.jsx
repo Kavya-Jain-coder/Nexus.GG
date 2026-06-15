@@ -6,6 +6,7 @@ import { useAuthStore } from './store/useAuthStore';
 import { useGameStore } from './store/useGameStore';
 import { useUIStore } from './store/useUIStore';
 import { GAME_CONFIGS } from './lib/gameConfigs';
+import { playSynthSound } from './lib/sound';
 
 // Pages
 import Landing from './pages/Landing/Landing';
@@ -62,11 +63,23 @@ function AppLayout({ children }) {
         {/* Sidebar Navigation */}
         {!isPublicRoute && !isHoloFullscreen && <Sidebar />}
 
+        {/* Mobile Sidebar Backdrop Overlay */}
+        {!isPublicRoute && !isHoloFullscreen && sidebarOpen && (
+          <div 
+            onClick={() => {
+              const { toggleSidebar } = useUIStore.getState();
+              playSynthSound('click');
+              toggleSidebar();
+            }}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-25 lg:hidden animate-fade-in"
+          />
+        )}
+
         {/* Content Panel */}
         <div 
           className={`flex-1 flex flex-col min-w-0 transition-all duration-300 ${
             !isPublicRoute 
-              ? (isHoloFullscreen ? 'pl-0' : (sidebarOpen ? 'pl-20 md:pl-64' : 'pl-20')) 
+              ? (isHoloFullscreen ? 'pl-0' : (sidebarOpen ? 'pl-0 lg:pl-64' : 'pl-0 lg:pl-20')) 
               : ''
           }`}
         >

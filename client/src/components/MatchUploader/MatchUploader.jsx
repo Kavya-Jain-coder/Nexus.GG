@@ -523,7 +523,7 @@ export default function MatchUploader() {
 
   return (
     <GlassCard className="w-full flex flex-col gap-6">
-      <div className="border-b border-white/5 pb-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="border-b border-white/5 pb-4 flex flex-col xl:flex-row xl:items-center justify-between gap-4">
         <div>
           <h2 className="font-display font-bold text-lg text-white">Match History Telemetry</h2>
           <p className="text-xs text-slate-400 mt-1">
@@ -532,7 +532,7 @@ export default function MatchUploader() {
         </div>
 
         {/* Tab Buttons */}
-        <div className="flex bg-black/40 p-1 rounded-xl border border-white/5 select-none w-fit">
+        <div className="flex flex-wrap bg-black/40 p-1 rounded-xl border border-white/5 select-none w-fit gap-1">
           <button
             onClick={() => {
               playSynthSound('click');

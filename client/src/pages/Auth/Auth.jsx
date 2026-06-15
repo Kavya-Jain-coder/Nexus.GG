@@ -520,8 +520,13 @@ export default function Auth() {
         if (progress >= 100) {
           clearInterval(interval);
           setTimeout(() => {
-            playSynthSound('transition', isMuted);
-            navigate('/dashboard');
+            if (data?.session) {
+              playSynthSound('transition', isMuted);
+              navigate('/dashboard');
+            } else {
+              playSynthSound('success', isMuted);
+              navigateStep('signup-verify-email');
+            }
           }, 600);
         }
       }, 150);
@@ -633,6 +638,7 @@ export default function Auth() {
         return cs2Bg;
       case 'signup-initializing':
       case 'login-welcome':
+      case 'signup-verify-email':
         return heroTunnel;
       default:
         return dashboardBg;
@@ -1196,6 +1202,40 @@ export default function Auth() {
               <p className="text-xs font-mono text-slate-500 tracking-wider">
                 COMMENCING PROFILE SEEDING Telemetry — {initializingProgress}%
               </p>
+            </div>
+          )}
+
+          {/* EMAIL VERIFICATION REQUIRED SUCCESS VIEW */}
+          {step === 'signup-verify-email' && (
+            <div className="flex flex-col items-center justify-center text-center max-w-md w-full space-y-6 bg-[#0c0c16]/80 border border-[#00f0ff]/20 p-8 rounded-2xl backdrop-blur-md relative overflow-hidden z-20">
+              <div className="scanlines-overlay pointer-events-none" />
+              <div className="tech-corner-tl" />
+              <div className="tech-corner-tr" />
+              <div className="tech-corner-bl" />
+              <div className="tech-corner-br" />
+              <div className="hud-accent-bar" />
+              
+              <CheckCircle className="w-16 h-16 text-emerald-400 animate-pulse" />
+              
+              <h2 className="font-display font-black text-xl md:text-2xl text-white tracking-wider uppercase">
+                COORDINATES TRANSMITTED
+              </h2>
+              
+              <p className="text-sm text-slate-350 leading-relaxed font-mono">
+                A verification downlink link has been dispatched to <span className="text-cyan-400 font-bold">{email}</span>. 
+                Please authorize the link in your inbox before accessing the Nexus OS.
+              </p>
+
+              <button
+                onClick={() => {
+                  playSynthSound('click', isMuted);
+                  navigateStep('gate');
+                }}
+                className="w-full flex items-center justify-center gap-2 py-3 px-6 bg-[var(--game-accent)] hover:bg-[var(--game-accent)]/80 text-black font-bold uppercase rounded-xl transition-all shadow-[0_0_15px_var(--game-glow)]"
+              >
+                <span>RETURN TO GATE ENTRY</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
             </div>
           )}
 

@@ -50,11 +50,38 @@ export function useAuth() {
         .eq('user_id', userId);
 
       if (!profilesError && profiles) {
-        const profilesMap = {};
-        profiles.forEach(p => {
-          profilesMap[p.game_type] = p;
-        });
-        useGameStore.getState().setGameProfiles(profilesMap);
+        if (profiles.length === 0) {
+          // Auto-initialize game profiles for all games if missing
+          const games = ['valorant', 'cs2', 'lol', 'fortnite', 'pubg'];
+          const newProfiles = [];
+          for (const game of games) {
+            const { data: newProfile, error: createError } = await supabase
+              .from('game_profiles')
+              .insert({
+                user_id: userId,
+                game_type: game,
+                current_rank: 'Bronze I',
+                peak_rank: 'Bronze I',
+                total_xp: 0
+              })
+              .select()
+              .single();
+            if (!createError && newProfile) {
+              newProfiles.push(newProfile);
+            }
+          }
+          const profilesMap = {};
+          newProfiles.forEach(p => {
+            profilesMap[p.game_type] = p;
+          });
+          useGameStore.getState().setGameProfiles(profilesMap);
+        } else {
+          const profilesMap = {};
+          profiles.forEach(p => {
+            profilesMap[p.game_type] = p;
+          });
+          useGameStore.getState().setGameProfiles(profilesMap);
+        }
       }
     } catch (err) {
       console.error('Failed to load user profile:', err);

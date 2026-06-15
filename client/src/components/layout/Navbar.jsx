@@ -8,7 +8,7 @@ import { playSynthSound } from '../../lib/sound';
 
 export default function Navbar() {
   const { activeGame, setActiveGame, gameProfiles, streaks } = useGameStore();
-  const { notifications, removeNotification, soundMuted, toggleSound, navbarCollapsed, toggleNavbarCollapse } = useUIStore();
+  const { sidebarOpen, notifications, removeNotification, soundMuted, toggleSound, navbarCollapsed, toggleNavbarCollapse } = useUIStore();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
 
@@ -58,15 +58,17 @@ export default function Navbar() {
       )}
 
       <header 
-        className={`fixed top-0 right-0 left-0 h-20 z-20 glass-panel border-b border-white/5 px-6 sm:px-8 flex items-center justify-between pointer-events-auto transition-transform duration-300 ${
+        className={`fixed top-0 right-0 ${
+          sidebarOpen ? 'left-20 md:left-64' : 'left-20'
+        } h-20 z-20 glass-panel border-b border-white/5 px-6 sm:px-8 flex items-center justify-between pointer-events-auto transition-all duration-300 ${
           navbarCollapsed ? 'transform -translate-y-full' : ''
         }`}
       >
-      {/* Spacer to push navbar elements to the right since sidebar is absolute/fixed */}
-      <div className="w-0 md:w-20" />
+      {/* Left side empty space to match sidebar spacing, or breadcrumbs if desired */}
+      <div className="flex items-center" />
 
-      {/* Game Selector Dropdown */}
-      <div className="relative">
+      {/* Game Selector Dropdown (Centering using absolute position inside the navbar) */}
+      <div className="absolute left-1/2 -translate-x-1/2 z-30">
         <button
           onClick={handleDropdownToggle}
           onMouseEnter={() => playSynthSound('hover')}
@@ -80,7 +82,7 @@ export default function Navbar() {
         </button>
 
         {dropdownOpen && (
-          <div className="absolute top-14 left-0 w-64 glass-panel border border-white/10 rounded-2xl p-2 shadow-2xl z-50 animate-float-in">
+          <div className="absolute top-14 left-1/2 -translate-x-1/2 w-64 glass-panel border border-white/10 rounded-2xl p-2 shadow-2xl z-50 animate-float-in">
             <p className="text-[10px] font-bold text-slate-500 tracking-wider px-3 py-2 uppercase">SELECT ARENA</p>
             {Object.values(GAME_CONFIGS).map((game) => (
               <button

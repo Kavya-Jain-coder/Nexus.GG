@@ -1,30 +1,25 @@
+# <img src="client/src/assets/backgrounds/Removed-bg-NexusGG-Logo.png" alt="NEXUS.GG Logo" width="220" /> 
+
 # 🎮 NEXUS.GG | AI Game Coaching OS
 
-NEXUS.GG is a production-grade, AI-driven Game Coaching Operating System designed to help competitive players analyze matches, track streaks, execute checklists, and receive personalized coaching insights. It features a cinematic sci-fi interface, neon-themed glassmorphism, and custom vector game integrations.
+NEXUS.GG is a production-grade, immersive AI-powered Game Coaching Operating System designed to help competitive esports players analyze match telemetry, track daily training checklists, monitor streaks, and receive personalized strategic feedback from game-themed AI coaches.
+
+Featuring a cinematic sci-fi HUD dashboard with glassmorphism, responsive ambient backdrops, and interactive 3D WebGL (Three.js) model views, the platform bridges the gap between raw player performance logs and intelligent coaching.
 
 ---
 
-## ⚡ Key Features
+## ⚡ Core Capabilities
 
-- **🚪 Cinematic Portal Auth Flow**: A highly immersive, multi-step portal entry experience featuring Web Audio API sci-fi synthesizer sounds, monospace typewriter effects, and gold particle burst animations.
-- **⚙️ Multi-Game Coaching Integration**: Personalized training checklists and AI coaches for five major game arenas:
-  - **VALORANT** (Coach Ghost — Tactical & Precise)
-  - **CS2** (Coach Vandal — Direct & Pragmatic)
-  - **League of Legends** (Coach Oracle — Strategic Macro-Gameplay)
-  - **Fortnite** (Coach Skye — Mechanical Build & Edit Speed)
-  - **PUBG** (Coach Sniper — Zone Survival & Rotations)
-- **📋 Daily Checklist Tracker**: XP level progression system, current streaks, and daily tactical training tasks generated based on player statistics.
-- **📊 Real-time Match Telemetry Syncing**: Direct JSON upload interface allowing users to synchronize their match logs for detailed AI analysis and weakness identification reports.
-- **🎭 Responsive Dark Mode & Blur Effects**: Widescreen high-resolution character graphics with localized linear gradient backdrop blur overlays keeping the text side clean and the artwork side vibrant.
-
----
-
-## 🛠️ Tech Stack
-
-- **Frontend**: React (v18), Vite, Zustand (State Management), TailwindCSS, Framer Motion (Animations), Lucide React (Icons).
-- **Backend**: Node.js, Express, Multer (File Uploads), CORS.
-- **Database / Auth**: Supabase (PostgreSQL), Postgres triggers and security definer functions, Row-Level Security (RLS) policies.
-- **AI Integrations**: Gemini API (Multimodal/Inference Routing) and Groq API (High-speed tactical feedback processing).
+- **🚪 Cinematic Portal Authentication**: Immersive portal landing experience utilizing the Web Audio API for synth sounds, typewriter visual telemetry logging, and golden particle burst feedback animations.
+- **🛡️ Multi-Game AI Personas**: Dedicated AI coach engines with localized personality heuristics, optimized using the Gemini API & Groq API:
+  - **VALORANT** (Coach Ghost — Tactical, precise, and objective-oriented)
+  - **CS2** (Coach Vandal — Pragmatic, aggressive positioning and econ strategies)
+  - **League of Legends** (Coach Oracle — High-level macro-analysis and rotation timings)
+  - **Fortnite** (Coach Skye — Build mechanics, edit speed refinement, and retakes)
+  - **PUBG** (Coach Sniper — Rotations, zone management, and micro-survival)
+- **📊 Real-time Telemetry Synchronization**: Structured JSON match parsing. Uploaded match logs are processed via real-time triggers to instantly update player stats.
+- **📋 Daily Checklists & Streaks**: Gamified level progression tracking. Players earn XP and maintain active streaks by checking off daily training tasks generated dynamically.
+- **🦾 Interactive 3D Setup**: Dynamic 360° hardware inspection model viewer and gyroscopic holographic cards displaying active status.
 
 ---
 
@@ -32,136 +27,143 @@ NEXUS.GG is a production-grade, AI-driven Game Coaching Operating System designe
 
 ```
 Nexus-GG/
-├── client/                 # React Frontend Application
+├── client/                     # React & Vite Frontend Application
 │   ├── src/
-│   │   ├── assets/         # 1080p Game Character backgrounds and logos
-│   │   ├── components/     # UI elements (GlassCard, GameIcon, Buttons)
-│   │   ├── hooks/          # React Custom Hooks (useAuth, useMatches)
-│   │   ├── lib/            # Game configurations and state constants
-│   │   ├── pages/          # Pages (Landing, Auth, Dashboard, GameArena, etc.)
-│   │   ├── store/          # Zustand global state stores
-│   │   ├── App.jsx         # Layout wrappers and router
-│   │   └── index.css       # Core theme-tailored classes and scrollbars
+│   │   ├── assets/             # Game assets (Characters, transparent backgrounds, logos)
+│   │   ├── components/         # Reusable UI widgets & 3D visualizations
+│   │   │   ├── layout/         # Navigation components (Dynamic Sidebar, Navbar)
+│   │   │   ├── dashboard/      # Three.js Hologram, 3D setup, and Stat Ring Visualizer
+│   │   │   └── DailyChecklist/ # Daily checklist interface
+│   │   ├── hooks/              # Custom hooks for fetching telemetry and streaks
+│   │   ├── store/              # Zustand global state managers (Auth, Game, UI)
+│   │   ├── App.jsx             # App layout wrapper and page router
+│   │   └── index.css           # Core styled classes, custom scrollbars, animations
 │   ├── package.json
+│   ├── vercel.json             # Vercel SPA routing rewrites
 │   └── vite.config.js
 │
-├── server/                 # Express API Server
-│   ├── server.js           # API endpoints (checklists, matches, AI analysis)
-│   ├── create_test_user.js # Admin seeder script
+├── server/                     # Node.js & Express API Backend
+│   ├── routes/                 # Express sub-routers (Auth, Matches, Coaching, Progress)
+│   ├── middleware/             # Request parsing, auth checkers, and error handlers
+│   ├── server.js               # Express app instance and listeners
 │   └── package.json
 │
-└── supabase/               # Database SQL Scripts
-    ├── schema.sql          # Primary tables, RLS policies, indexes
-    └── fix_triggers.sql    # Security definer function updates & permissions
+└── supabase/                   # Database SQL Scripts & Triggers
+    ├── schema.sql              # Core database schema, constraints, and index lists
+    ├── fix_triggers.sql        # Auth sync, security definer triggers, and table privileges
+    └── update_stats_trigger.sql# Real-time win rate, KD ratio, and match-played trigger calculations
 ```
 
 ---
 
-## 🚀 Local Development Setup
+## ⚙️ Local Development Setup
 
-Follow these steps to run NEXUS.GG on your local computer:
+Follow these instructions to run the stack on your local workspace:
 
 ### 1. Database Setup (Supabase)
-1. Sign in to your [Supabase Console](https://supabase.com) and create a new project.
-2. Navigate to the **SQL Editor** in the left sidebar.
-3. Open `supabase/schema.sql` from the repository, copy its contents, and run it. This creates the tables: `users`, `game_profiles`, `matches`, `xp_transactions`, and `streaks`.
-4. Next, copy the contents of `supabase/fix_triggers.sql` and execute it. This configures schema-level permissions and creates the `handle_new_user()` security definer function triggers to link auth users automatically.
+1. Register/Login to your [Supabase Console](https://supabase.com) and create a new project.
+2. In the left panel, navigate to the **SQL Editor**.
+3. Copy the contents of `supabase/schema.sql` into the editor and click **Run**.
+4. Next, copy and execute `supabase/fix_triggers.sql` to apply schema permissions and set up automatic user profile synchronizations.
+5. Copy and execute `supabase/update_stats_trigger.sql` to install the real-time match statistic aggregate triggers.
 
-### 2. Backend Server Setup
-1. Open a terminal and navigate to the `server/` directory:
+### 2. Backend Server Configuration
+1. Navigate to the `server/` directory:
    ```bash
    cd server
    ```
-2. Install dependencies:
+2. Install standard node dependencies:
    ```bash
    npm install
    ```
-3. Create a `.env` file in the `server/` directory and add the following keys (retrieved from your Supabase Settings -> API):
+3. Create a `.env` configuration file in the `server/` root:
    ```env
    PORT=3001
    NODE_ENV=development
-   SUPABASE_URL=https://your-project.supabase.co
-   SUPABASE_SERVICE_ROLE_KEY=your-service-role-secret-key
-   DATABASE_URL=postgresql://postgres.your-project:password@host:5432/postgres
+   SUPABASE_URL=https://your-project-id.supabase.co
+   SUPABASE_SERVICE_ROLE_KEY=your-supabase-service-role-key
+   DATABASE_URL=postgresql://postgres.your-project-id:your-password@host:5432/postgres
    GROQ_API_KEY=your-groq-api-key
    GEMINI_API_KEY=your-gemini-api-key
    JWT_SECRET=your-supabase-jwt-secret
    ```
-4. Start the backend development server:
+4. Start the backend developer server:
    ```bash
    npm run dev
    ```
 
-### 3. Frontend Client Setup
-1. Open a new terminal and navigate to the `client/` directory:
+### 3. Frontend Client Configuration
+1. Navigate to the `client/` directory:
    ```bash
-   cd client
+   cd ../client
    ```
-2. Install dependencies:
+2. Install client-side packages:
    ```bash
    npm install
    ```
-3. Create a `.env` file in the `client/` directory and configure the variables:
+3. Create a `.env` configuration file in the `client/` root:
    ```env
-   VITE_SUPABASE_URL=https://your-project.supabase.co
-   VITE_SUPABASE_ANON_KEY=your-anon-public-key
+   VITE_SUPABASE_URL=https://your-project-id.supabase.co
+   VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
    VITE_API_URL=http://localhost:3001
    ```
-4. Start the frontend Vite server:
+4. Start the client dev server:
    ```bash
    npm run dev
    ```
-5. Open your browser and navigate to `http://localhost:3000`.
+5. Open your browser and access: `http://localhost:3000`
 
 ---
 
-## 🌐 Production Deployment Guide
+## 🌐 Production Deployment
 
-Follow this step-by-step guide to deploy NEXUS.GG to production:
-
-### Step 1: Prepare Your Production Supabase Database
-1. Go to your **Supabase Console** -> **Authentication** -> **Providers** -> **Email**.
-2. **Disable "Confirm Email"** (optional, but recommended if you want users to log in immediately without checking their inbox).
-3. Confirm that all tables, triggers, and Row Level Security (RLS) policies are active by verifying the **Database** schema view.
-
-### Step 2: Deploy the Backend API Server (Render / Railway)
-We will use **Render** in this example:
-1. Log in to [Render](https://render.com) and create a **New Web Service**.
-2. Connect your GitHub repository.
-3. Configure the service:
+### Deploying the Backend API Server (Render)
+1. Create a **Web Service** on [Render](https://render.com) and link your GitHub repository.
+2. Configure the following project parameters:
    - **Root Directory**: `server`
    - **Build Command**: `npm install`
    - **Start Command**: `node server.js`
-4. Add the following **Environment Variables** in the Render settings:
-   - `PORT`: `10000` (or leave empty; Render assigns one)
+3. Add the following environment keys under **Settings -> Environment Variables**:
    - `NODE_ENV`: `production`
-   - `SUPABASE_URL`: *Your Supabase URL*
-   - `SUPABASE_SERVICE_ROLE_KEY`: *Your Supabase Service Role Key*
+   - `SUPABASE_URL`: *Your Supabase Project URL*
+   - `SUPABASE_SERVICE_ROLE_KEY`: *Your Service Role Key*
+   - `DATABASE_URL`: *Your Supabase PostgreSQL Connection String*
    - `GROQ_API_KEY`: *Your Groq API Key*
    - `GEMINI_API_KEY`: *Your Gemini API Key*
    - `JWT_SECRET`: *Your Supabase JWT Secret*
-5. Deploy the web service and copy the provided URL (e.g., `https://nexus-gg-api.onrender.com`).
+4. Deploy the service and retrieve the public endpoint (e.g., `https://nexus-gg.onrender.com`).
 
-### Step 3: Deploy the Frontend Client (Vercel / Netlify)
-We will use **Vercel** in this example:
-1. Log in to [Vercel](https://vercel.com) and click **Add New Project**.
-2. Import your GitHub repository.
-3. In the project settings, configure:
+### Deploying the Frontend React App (Vercel)
+1. Import your repository into [Vercel](https://vercel.com).
+2. Configure the project build options:
    - **Framework Preset**: `Vite`
    - **Root Directory**: `client`
    - **Build Command**: `npm run build`
    - **Output Directory**: `dist`
-4. Expand the **Environment Variables** section and add:
-   - `VITE_SUPABASE_URL`: *Your Supabase URL*
-   - `VITE_SUPABASE_ANON_KEY`: *Your Supabase Anon Public Key*
-   - `VITE_API_URL`: *Your deployed backend service URL* (e.g., `https://nexus-gg-api.onrender.com`)
-5. Click **Deploy**. Vercel will build the React bundle and host it on a public domain.
+3. In the **Environment Variables** panel, register:
+   - `VITE_SUPABASE_URL`: *Your Supabase Project URL*
+   - `VITE_SUPABASE_ANON_KEY`: *Your Supabase Public Anon Key*
+   - `VITE_API_URL`: `https://nexus-gg.onrender.com` *(Point to your deployed Render URL)*
+4. Click **Deploy**. Vercel will automatically build the SPA distribution.
 
-### Step 4: Configure CORS (Optional)
-If your frontend and backend run on different domains, ensure your backend allows requests from your frontend production domain. The server's CORS config (`server/server.js`) is preset to allow all origins in development, but you can lock it to your Vercel URL in production:
-```javascript
-app.use(cors({
-  origin: process.env.CLIENT_ORIGIN || '*'
-}));
-```
-Add `CLIENT_ORIGIN` to your backend environment variables with your Vercel URL.
+### Post-Deployment: Configure Redirect URLs
+To enable authentication redirects to work correctly in production:
+1. Open your **Supabase Dashboard** -> **Authentication** -> **URL Configuration**.
+2. Set the **Site URL** to:
+   ```text
+   https://your-app-name.vercel.app
+   ```
+3. Set the **Redirect URLs** to:
+   ```text
+   https://your-app-name.vercel.app/**
+   ```
+
+---
+
+## 📈 Real-time Analytics Triggers
+NEXUS.GG utilizes direct PostgreSQL triggers rather than slow REST routes to calculate profile metrics. When matches are added/updated/deleted in the `match_history` table, a `security definer` trigger function calculates player performance and upserts:
+* `matches_played`
+* `win_rate` (wins / total matches)
+* `kd_ratio` (kills / deaths)
+
+This ensures client dashboards reflect real-time telemetry instantly upon match synchronization.

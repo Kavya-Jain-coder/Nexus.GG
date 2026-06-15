@@ -60,7 +60,7 @@ export default function Navbar() {
       <header 
         className={`fixed top-0 right-0 ${
           sidebarOpen ? 'left-0 lg:left-64' : 'left-0 lg:left-20'
-        } h-20 z-20 glass-panel border-b border-white/5 px-6 sm:px-8 flex items-center justify-between pointer-events-auto transition-all duration-300 ${
+        } h-20 z-20 glass-panel border-b border-white/5 px-4 sm:px-8 flex items-center justify-between pointer-events-auto transition-all duration-300 ${
           navbarCollapsed ? 'transform -translate-y-full' : ''
         }`}
       >
@@ -78,8 +78,8 @@ export default function Navbar() {
       </div>
       <div className="hidden lg:flex items-center" />
 
-      {/* Game Selector Dropdown (Centering using absolute position inside the navbar) */}
-      <div className="absolute left-1/2 -translate-x-1/2 z-30">
+      {/* Game Selector Dropdown (Centering using absolute position on desktop, inline on mobile) */}
+      <div className="relative lg:absolute lg:left-1/2 lg:-translate-x-1/2 z-30">
         <button
           onClick={handleDropdownToggle}
           onMouseEnter={() => playSynthSound('hover')}
@@ -128,7 +128,7 @@ export default function Navbar() {
       </div>
 
       {/* Right Side Info: Level, Streak, Sound, Notifications */}
-      <div className="flex items-center gap-4 sm:gap-6">
+      <div className="flex items-center gap-2 sm:gap-4">
         {/* Rank & Level Badge */}
         <div className="hidden sm:flex flex-col items-end">
           <div className="flex items-center gap-1.5">
@@ -151,11 +151,11 @@ export default function Navbar() {
           </span>
         </div>
 
-        {/* Sound Toggle Button */}
+        {/* Sound Toggle Button (hidden on mobile to save space) */}
         <button
           onClick={handleSoundToggle}
           onMouseEnter={() => playSynthSound('hover')}
-          className="p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-slate-400 text-slate-300 hover:text-white transition-all"
+          className="hidden sm:flex p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-slate-400 text-slate-300 hover:text-white transition-all"
           title={soundMuted ? 'Unmute UI sounds' : 'Mute UI sounds'}
         >
           {soundMuted ? <VolumeX className="w-5 h-5 text-slate-500" /> : <Volume2 className="w-5 h-5 text-yellow-400" />}

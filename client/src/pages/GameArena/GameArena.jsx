@@ -153,7 +153,7 @@ export default function GameArena() {
       {/* Floating 3D Holographic Match Telemetry Inspector Modal */}
       {selectedMatch && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center p-4">
-          <div className="w-full max-w-lg hud-panel hud-panel-active p-8 relative overflow-hidden animate-float-in">
+          <div className="w-full max-w-lg hud-panel hud-panel-active p-8 relative overflow-hidden animate-float-in max-h-[90vh] overflow-y-auto">
             <div className="scanlines-overlay" />
             <div className="scan-line" />
             <div className="hud-accent-bar" />

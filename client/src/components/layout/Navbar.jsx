@@ -8,7 +8,7 @@ import { playSynthSound } from '../../lib/sound';
 
 export default function Navbar() {
   const { activeGame, setActiveGame, gameProfiles, streaks } = useGameStore();
-  const { sidebarOpen, notifications, removeNotification, soundMuted, toggleSound, navbarCollapsed, toggleNavbarCollapse } = useUIStore();
+  const { sidebarOpen, toggleSidebar, notifications, removeNotification, soundMuted, toggleSound, navbarCollapsed, toggleNavbarCollapse } = useUIStore();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { User, Keyboard, ShieldAlert, Award, Calendar, Image as ImageIcon, Maximize2, X, RotateCw, ChevronDown, ChevronUp } from 'lucide-react';
 import StreakCounter from '../../components/StreakSystem/StreakCounter';
 import RankBadge from '../../components/StreakSystem/RankBadge';

@@ -170,9 +170,39 @@ export default function ThreeHardwareSetup({ activeGame, isFullscreen = false, a
       isDragging.current = false;
     };
 
+    const handleTouchStart = (e) => {
+      if (!isFullscreen) return;
+      isDragging.current = true;
+      const touch = e.touches[0];
+      previousMousePosition.current = { x: touch.clientX, y: touch.clientY };
+    };
+
+    const handleTouchMove = (e) => {
+      if (!isFullscreen) return;
+      if (isDragging.current) {
+        if (e.cancelable) e.preventDefault(); // Prevent standard screen scroll
+        const touch = e.touches[0];
+        const deltaMove = {
+          x: touch.clientX - previousMousePosition.current.x,
+          y: touch.clientY - previousMousePosition.current.y
+        };
+        manualRotation.current.y += deltaMove.x * 0.008;
+        manualRotation.current.x += deltaMove.y * 0.008;
+        previousMousePosition.current = { x: touch.clientX, y: touch.clientY };
+      }
+    };
+
+    const handleTouchEnd = () => {
+      isDragging.current = false;
+    };
+
     canvas.addEventListener('mousedown', handleMouseDown);
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mouseup', handleMouseUp);
+
+    canvas.addEventListener('touchstart', handleTouchStart, { passive: false });
+    window.addEventListener('touchmove', handleTouchMove, { passive: false });
+    window.addEventListener('touchend', handleTouchEnd);
 
     const handleResize = () => {
       if (!containerRef.current) return;
@@ -238,6 +268,11 @@ export default function ThreeHardwareSetup({ activeGame, isFullscreen = false, a
       canvas.removeEventListener('mousedown', handleMouseDown);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseup', handleMouseUp);
+
+      canvas.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchend', handleTouchEnd);
+
       resizeObserver.disconnect();
 
       particleGeo.dispose();

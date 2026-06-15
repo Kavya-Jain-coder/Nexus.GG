@@ -99,7 +99,10 @@ export default function ThreeHardwareSetup({ activeGame, isFullscreen = false, a
       
       // Scale to fit the container nicely
       const maxDim = Math.max(size.x, size.y, size.z);
-      const targetScale = isFullscreen ? 2.5 : 2.0;
+      const aspect = width / height;
+      const targetScale = isFullscreen 
+        ? (aspect < 1 ? Math.max(1.3, 2.5 * aspect * 1.2) : 2.5) 
+        : 2.0;
       const scale = targetScale / maxDim;
       model.scale.setScalar(scale);
       

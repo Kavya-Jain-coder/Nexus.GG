@@ -106,8 +106,11 @@ export default function ThreeHologram({ activeGame, isFullscreen = false, autoRo
 
     const width = container.clientWidth || 400;
     const height = container.clientHeight || 400;
-    const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 100);
-    camera.position.z = isFullscreen ? 5.5 : 6.5;
+    const aspect = width / height;
+    const camera = new THREE.PerspectiveCamera(50, aspect, 0.1, 100);
+    const baseZ = isFullscreen ? 5.5 : 6.5;
+    const targetZ = aspect < 1 ? Math.min(10, baseZ / (aspect * 1.3)) : baseZ;
+    camera.position.z = targetZ;
 
     const renderer = new THREE.WebGLRenderer({
       canvas,
@@ -414,9 +417,10 @@ export default function ThreeHologram({ activeGame, isFullscreen = false, autoRo
         pointerRef.current.y += (pointerRef.current.targetY - pointerRef.current.y) * 0.05;
         camera.position.x = pointerRef.current.x * 0.5;
         camera.position.y = pointerRef.current.y * 0.5;
+        camera.position.z = targetZ;
         camera.lookAt(0, 0, 0);
       } else {
-        camera.position.set(0, 0, 5.5);
+        camera.position.set(0, 0, targetZ);
         camera.lookAt(0, 0, 0);
       }
 

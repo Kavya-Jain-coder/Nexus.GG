@@ -14,6 +14,7 @@ import { useUIStore } from '../../store/useUIStore';
 import { useAuthStore } from '../../store/useAuthStore';
 import { supabase } from '../../lib/supabase';
 import { playSynthSound } from '../../lib/sound';
+import logoImg from '../../assets/backgrounds/Removed-bg-NexusGG-Logo.png';
 
 export default function Sidebar() {
   const { sidebarOpen, toggleSidebar } = useUIStore();
@@ -67,7 +68,7 @@ export default function Sidebar() {
             onMouseEnter={() => playSynthSound('hover')}
           >
             <img 
-              src="/src/assets/backgrounds/Removed-bg-NexusGG-Logo.png" 
+              src={logoImg} 
               alt="NEXUS.GG Logo" 
               className={`filter drop-shadow-[0_0_12px_var(--game-glow)] transition-all duration-300 transform-gpu ${
                 sidebarOpen 

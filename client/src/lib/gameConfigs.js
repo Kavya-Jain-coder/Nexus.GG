@@ -1,4 +1,9 @@
 // Game configs for NEXUS.GG Game Arena and Coaching OS
+import valorantBg from '../assets/backgrounds/valorant-bg.jpg';
+import cs2Bg from '../assets/backgrounds/cs2-bg.jpg';
+import lolBg from '../assets/backgrounds/lol-bg.jpg';
+import fortniteBg from '../assets/backgrounds/fortnite-bg.jpg';
+import pubgBg from '../assets/backgrounds/pubg-bg.jpg';
 
 export const GAME_CONFIGS = {
   valorant: {
@@ -7,7 +12,7 @@ export const GAME_CONFIGS = {
     accentColor: '#ff4655',
     glowColor: 'rgba(255, 70, 85, 0.45)',
     bgClass: 'theme-valorant',
-    background: '/src/assets/backgrounds/valorant-bg.jpg',
+    background: valorantBg,
     coachName: 'Ghost',
     coachPersonality: 'Tactical, analytical, and highly precise. Focuses on crosshair placement, economy management, and coordination.',
     coachAvatar: '👤',
@@ -25,7 +30,7 @@ export const GAME_CONFIGS = {
     accentColor: '#de9b35',
     glowColor: 'rgba(222, 155, 53, 0.45)',
     bgClass: 'theme-cs2',
-    background: '/src/assets/backgrounds/cs2-bg.jpg',
+    background: cs2Bg,
     coachName: 'Vandal',
     coachPersonality: 'Veteran, direct, and pragmatic. Focuses heavily on utility efficiency, position holding, and team positioning.',
     coachAvatar: '💀',
@@ -43,7 +48,7 @@ export const GAME_CONFIGS = {
     accentColor: '#c8aa6e',
     glowColor: 'rgba(200, 170, 110, 0.45)',
     bgClass: 'theme-lol',
-    background: '/src/assets/backgrounds/lol-bg.jpg',
+    background: lolBg,
     coachName: 'Oracle',
     coachPersonality: 'Strategic, conceptual, and focused on macro-gameplay. Analyzes waves, objective timings, and team fight execution.',
     coachAvatar: '🔮',
@@ -61,7 +66,7 @@ export const GAME_CONFIGS = {
     accentColor: '#00f0ff',
     glowColor: 'rgba(0, 240, 255, 0.45)',
     bgClass: 'theme-fortnite',
-    background: '/src/assets/backgrounds/fortnite-bg.jpg',
+    background: fortniteBg,
     coachName: 'Skye',
     coachPersonality: 'Agile, creative, and mechanically focused. Evaluates build speed, edit edits, and high-ground retakes.',
     coachAvatar: '🦊',
@@ -79,7 +84,7 @@ export const GAME_CONFIGS = {
     accentColor: '#f25c05',
     glowColor: 'rgba(242, 92, 5, 0.45)',
     bgClass: 'theme-pubg',
-    background: '/src/assets/backgrounds/pubg-bg.jpg',
+    background: pubgBg,
     coachName: 'Sniper',
     coachPersonality: 'Survivalist, cold, and calculation-based. Emphasizes rotation pathing, zone edge play, and utility usage.',
     coachAvatar: '🎯',

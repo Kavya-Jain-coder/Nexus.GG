@@ -4,6 +4,8 @@ import { ShieldCheck, Target, Zap, TrendingUp, Sparkles, LogIn } from 'lucide-re
 import ParticleBackground from '../../components/layout/ParticleBackground';
 import GlassCard from '../../components/ui/GlassCard';
 import NeonButton from '../../components/ui/NeonButton';
+import logoImg from '../../assets/backgrounds/Removed-bg-NexusGG-Logo.png';
+import dashboardBg from '../../assets/backgrounds/dashboard-bg.jpg';
 
 export default function Landing() {
   const features = [
@@ -34,7 +36,7 @@ export default function Landing() {
     <div 
       className="relative min-h-screen flex flex-col justify-between overflow-x-hidden"
       style={{
-        backgroundImage: "url('/src/assets/backgrounds/dashboard-bg.jpg')",
+        backgroundImage: `url(${dashboardBg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed'
@@ -48,7 +50,7 @@ export default function Landing() {
       <header className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-8 h-24 flex items-center justify-between">
         <div className="flex items-center select-none -ml-4">
           <img 
-            src="/src/assets/backgrounds/Removed-bg-NexusGG-Logo.png" 
+            src={logoImg} 
             alt="NEXUS.GG Logo" 
             className="h-20 w-auto object-contain filter drop-shadow-[0_0_15px_rgba(155,93,229,0.45)] scale-125 transform-gpu" 
           />

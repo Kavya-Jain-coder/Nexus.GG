@@ -38,7 +38,7 @@ function PrivateRoute({ children }) {
 // App Layout wrapper to handle active game backgrounds
 function AppLayout({ children }) {
   const { activeGame } = useGameStore();
-  const { sidebarOpen } = useUIStore();
+  const { sidebarOpen, isHoloFullscreen } = useUIStore();
   const location = useLocation();
   const config = GAME_CONFIGS[activeGame || 'valorant'];
 
@@ -60,13 +60,13 @@ function AppLayout({ children }) {
 
       <div className="flex min-h-screen bg-transparent">
         {/* Sidebar Navigation */}
-        {!isPublicRoute && <Sidebar />}
+        {!isPublicRoute && !isHoloFullscreen && <Sidebar />}
 
         {/* Content Panel */}
         <div 
           className={`flex-1 flex flex-col min-w-0 transition-all duration-300 ${
             !isPublicRoute 
-              ? (sidebarOpen ? 'pl-20 md:pl-64' : 'pl-20') 
+              ? (isHoloFullscreen ? 'pl-0' : (sidebarOpen ? 'pl-20 md:pl-64' : 'pl-20')) 
               : ''
           }`}
         >

@@ -3,6 +3,7 @@ import { create } from 'zustand';
 export const useUIStore = create((set) => ({
   sidebarOpen: true,
   navbarCollapsed: false,
+  isHoloFullscreen: false,
   notifications: [],
   soundMuted: (() => {
     const saved = localStorage.getItem('nexus_sound_muted') || localStorage.getItem('nexus_auth_muted');
@@ -14,6 +15,8 @@ export const useUIStore = create((set) => ({
   
   toggleNavbarCollapse: () => set((state) => ({ navbarCollapsed: !state.navbarCollapsed })),
   setNavbarCollapsed: (val) => set({ navbarCollapsed: val }),
+
+  setIsHoloFullscreen: (val) => set({ isHoloFullscreen: val }),
   
   toggleSound: () => set((state) => {
     const newVal = !state.soundMuted;

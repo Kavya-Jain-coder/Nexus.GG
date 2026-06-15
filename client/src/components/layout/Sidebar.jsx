@@ -17,9 +17,11 @@ import { playSynthSound } from '../../lib/sound';
 import logoImg from '../../assets/backgrounds/Removed-bg-NexusGG-Logo.png';
 
 export default function Sidebar() {
-  const { sidebarOpen, toggleSidebar } = useUIStore();
+  const { sidebarOpen, toggleSidebar, isHoloFullscreen } = useUIStore();
   const { profile } = useAuthStore();
   const location = useLocation();
+
+  if (isHoloFullscreen) return null;
 
   const navItems = [
     { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },

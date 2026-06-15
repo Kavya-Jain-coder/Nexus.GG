@@ -48,10 +48,9 @@ const BUILTIN_AVATARS = {
 export default function Profile() {
   const { profile, setProfile } = useAuthStore();
   const { gameProfiles, activeGame } = useGameStore();
-  const { setNavbarCollapsed } = useUIStore();
+  const { setNavbarCollapsed, isHoloFullscreen, setIsHoloFullscreen } = useUIStore();
   const [activeTab, setActiveTab] = useState('valorant');
   const [updating, setUpdating] = useState(false);
-  const [isHardwareFullscreen, setIsHardwareFullscreen] = useState(false);
   const [autoRotateHardware, setAutoRotateHardware] = useState(true);
   const [showModalControls, setShowModalControls] = useState(true);
   const modalControlsTimeoutRef = useRef(null);
@@ -75,9 +74,9 @@ export default function Profile() {
   }, []);
 
   useEffect(() => {
-    setNavbarCollapsed(isHardwareFullscreen);
+    setNavbarCollapsed(isHoloFullscreen);
     return () => setNavbarCollapsed(false);
-  }, [isHardwareFullscreen, setNavbarCollapsed]);
+  }, [isHoloFullscreen, setNavbarCollapsed]);
 
   const mockGamesList = [
     { id: 'valorant', name: 'Valorant', badge: '🟫' },
@@ -310,7 +309,7 @@ export default function Profile() {
               onClick={(e) => {
                 e.stopPropagation();
                 playSynthSound('click');
-                setIsHardwareFullscreen(true);
+                setIsHoloFullscreen(true);
                 resetModalControlsTimeout();
               }}
               className="absolute top-4 right-4 p-2 bg-black/60 border border-white/5 hover:border-[var(--game-accent)] hover:text-white rounded-lg text-slate-400 transition-all duration-300 opacity-0 group-hover/holo:opacity-100 z-20 shadow-lg backdrop-blur-sm flex items-center gap-1.5 text-[10px] font-mono tracking-wider"
@@ -339,7 +338,7 @@ export default function Profile() {
       </div>
 
       {/* 3D Hardware Setup Fullscreen Modal */}
-      {isHardwareFullscreen && (
+      {isHoloFullscreen && (
         <div 
           onMouseMove={resetModalControlsTimeout}
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md animate-fade-in"
@@ -364,7 +363,7 @@ export default function Profile() {
             <div className="absolute bottom-4 left-6 font-mono text-[10px] text-[var(--game-accent)] tracking-[0.15em] uppercase">
               HARDWARE INSPECTION NODE // TYPE: DAMAGED HELMET
             </div>
-            <div className="absolute top-4 right-20 font-mono text-[10px] text-emerald-400 tracking-[0.1em] uppercase flex items-center gap-2">
+            <div className="absolute bottom-4 right-6 font-mono text-[10px] text-emerald-400 tracking-[0.1em] uppercase flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
               ORBIT_SYNC: COMPLETED
             </div>
@@ -390,7 +389,7 @@ export default function Profile() {
             <button
               onClick={() => {
                 playSynthSound('click');
-                setIsHardwareFullscreen(false);
+                setIsHoloFullscreen(false);
               }}
               className="p-2 bg-black/40 border border-white/10 rounded-lg text-slate-400 hover:text-white hover:border-slate-500 transition-all duration-200"
             >

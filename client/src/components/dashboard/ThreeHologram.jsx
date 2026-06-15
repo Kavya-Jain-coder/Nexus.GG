@@ -66,6 +66,7 @@ export default function ThreeHologram({ activeGame, isFullscreen = false, autoRo
   const canvasRef = useRef(null);
   const requestRef = useRef(null);
   const activeGameRef = useRef(activeGame);
+  const autoRotateRef = useRef(autoRotate);
   
   const isDragging = useRef(false);
   const previousMousePosition = useRef({ x: 0, y: 0 });
@@ -81,6 +82,10 @@ export default function ThreeHologram({ activeGame, isFullscreen = false, autoRo
   });
 
   const pointerRef = useRef({ x: 0, y: 0, targetX: 0, targetY: 0 });
+
+  useEffect(() => {
+    autoRotateRef.current = autoRotate;
+  }, [autoRotate]);
 
   useEffect(() => {
     activeGameRef.current = activeGame;
@@ -350,7 +355,7 @@ export default function ThreeHologram({ activeGame, isFullscreen = false, autoRo
         cardGroup.rotation.y = manualRotation.current.y;
         cardGroup.rotation.x = manualRotation.current.x;
         
-        if (autoRotate && !isDragging.current) {
+        if (autoRotateRef.current && !isDragging.current) {
           manualRotation.current.y += 0.005;
           cardGroup.rotation.y = manualRotation.current.y;
         }
@@ -426,7 +431,7 @@ export default function ThreeHologram({ activeGame, isFullscreen = false, autoRo
       });
       renderer.dispose();
     };
-  }, [isFullscreen, autoRotate]);
+  }, [isFullscreen]);
 
   return (
     <div 

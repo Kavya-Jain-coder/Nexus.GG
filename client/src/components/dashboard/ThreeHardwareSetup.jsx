@@ -16,6 +16,7 @@ export default function ThreeHardwareSetup({ activeGame, isFullscreen = false, a
   const canvasRef = useRef(null);
   const requestRef = useRef(null);
   const activeGameRef = useRef(activeGame);
+  const autoRotateRef = useRef(autoRotate);
   
   const isDragging = useRef(false);
   const previousMousePosition = useRef({ x: 0, y: 0 });
@@ -29,6 +30,10 @@ export default function ThreeHardwareSetup({ activeGame, isFullscreen = false, a
   });
 
   const pointerRef = useRef({ x: 0, y: 0, targetX: 0, targetY: 0 });
+
+  useEffect(() => {
+    autoRotateRef.current = autoRotate;
+  }, [autoRotate]);
 
   // Update theme colors when game profile changes
   useEffect(() => {
@@ -199,7 +204,7 @@ export default function ThreeHardwareSetup({ activeGame, isFullscreen = false, a
 
       // Rotate / Float the model
       if (isFullscreen) {
-        if (autoRotate) {
+        if (autoRotateRef.current) {
           manualRotation.current.y += delta * 0.15;
         }
         setupGroup.rotation.y = manualRotation.current.y;
@@ -240,7 +245,7 @@ export default function ThreeHardwareSetup({ activeGame, isFullscreen = false, a
 
       renderer.dispose();
     };
-  }, [isFullscreen, autoRotate]);
+  }, [isFullscreen]);
 
   return (
     <div ref={containerRef} className="w-full h-full min-h-[160px] relative">

@@ -356,21 +356,21 @@ export default function Profile() {
           </button>
 
           {/* Decals */}
-          <div className={`absolute inset-10 border border-white/5 pointer-events-none rounded-2xl transition-all duration-500 ${showModalControls ? 'opacity-100' : 'opacity-0 scale-95'}`}>
-            <div className="absolute top-4 left-6 font-mono text-[10px] text-white/50 tracking-[0.2em] uppercase">
+          <div className={`absolute inset-4 md:inset-10 border border-white/5 pointer-events-none rounded-2xl transition-all duration-500 ${showModalControls ? 'opacity-100' : 'opacity-0 scale-95'}`}>
+            <div className="absolute top-4 left-6 font-mono text-[10px] text-white/50 tracking-[0.2em] uppercase hidden md:block">
               // TELEMETRY HARDWARE SETUP [360° MODEL ORBIT]
             </div>
-            <div className="absolute bottom-4 left-6 font-mono text-[10px] text-[var(--game-accent)] tracking-[0.15em] uppercase">
+            <div className="absolute bottom-4 left-6 font-mono text-[10px] text-[var(--game-accent)] tracking-[0.15em] uppercase hidden md:block">
               HARDWARE INSPECTION NODE // TYPE: DAMAGED HELMET
             </div>
-            <div className="absolute bottom-4 right-6 font-mono text-[10px] text-emerald-400 tracking-[0.1em] uppercase flex items-center gap-2">
+            <div className="absolute bottom-4 right-6 font-mono text-[10px] text-emerald-400 tracking-[0.1em] uppercase flex items-center gap-2 hidden md:flex">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
               ORBIT_SYNC: COMPLETED
             </div>
           </div>
 
           {/* Controls Bar */}
-          <div className={`absolute top-8 right-8 z-[60] flex items-center gap-4 transition-all duration-500 ${showModalControls ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}>
+          <div className={`absolute top-6 right-6 md:top-8 md:right-8 z-[60] flex items-center gap-2 md:gap-4 transition-all duration-500 ${showModalControls ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}>
             <button
               onClick={() => {
                 playSynthSound('click');

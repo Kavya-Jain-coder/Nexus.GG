@@ -39,11 +39,13 @@ app.get('/health', (req, res) => {
 app.use(errorHandler);
 
 // Launch server listener
-app.listen(PORT, () => {
-  console.log(`===============================================`);
-  console.log(`  NEXUS.GG AI Game Coaching OS Server Running   `);
-  console.log(`  PORT: ${PORT}                                 `);
-  console.log(`  ENV:  ${process.env.NODE_ENV || 'development'}`);
-  console.log(`===============================================`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`===============================================`);
+    console.log(`  NEXUS.GG AI Game Coaching OS Server Running   `);
+    console.log(`  PORT: ${PORT}                                 `);
+    console.log(`  ENV:  ${process.env.NODE_ENV || 'development'}`);
+    console.log(`===============================================`);
+  });
+}
 export default app;

@@ -37,9 +37,9 @@ export async function callGemini(prompt, modelName = 'gemini-1.5-flash', jsonMod
   }
 }
 
-// Fallback Mock responses for Gemini 2.5 Pro / 1.5 Flash tasks
 function mockGeminiResponse(prompt, modelName, jsonMode) {
-  if (jsonMode) {
+  const isChecklist = prompt.includes('daily training program') || prompt.includes('checklist') || modelName === 'gemini-1.5-flash';
+  if (isChecklist) {
     // Return checklist structure
     return JSON.stringify([
       { gameType: 'valorant', taskDescription: 'Do 15 mins of gridshot training focusing on horizontal flicking', category: 'aim', targetCount: 1 },

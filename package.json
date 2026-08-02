@@ -1,0 +1,8 @@
+{
+  "name": "nexus-gg",
+  "private": true,
+  "description": "Root package.json for Vercel deployment",
+  "scripts": {
+    "postinstall": "cd client && npm install && cd ../server && npm install"
+  }
+}

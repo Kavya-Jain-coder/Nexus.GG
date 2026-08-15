@@ -117,34 +117,29 @@ Follow these instructions to run the stack on your local workspace:
 
 ## 🌐 Production Deployment
 
-### Deploying the Backend API Server (Render)
-1. Create a **Web Service** on [Render](https://render.com) and link your GitHub repository.
-2. Configure the following project parameters:
-   - **Root Directory**: `server`
-   - **Build Command**: `npm install`
-   - **Start Command**: `node server.js`
-3. Add the following environment keys under **Settings -> Environment Variables**:
-   - `NODE_ENV`: `production`
+### Full-Stack Deployment (Vercel)
+This project is configured to deploy both the Vite frontend and the Express backend simultaneously on [Vercel](https://vercel.com).
+
+1. Import your repository into Vercel.
+2. Configure the project build options:
+   - **Framework Preset**: `Other` (Our `vercel.json` handles the build routing)
+   - **Root Directory**: `./` (Leave as default)
+3. Under **Settings -> General -> Build & Development Settings**, override the **Install Command** with:
+   ```bash
+   echo "skip root install"
+   ```
+   *(This prevents Vercel from failing the root installation step before applying `vercel.json` rules.)*
+4. In the **Environment Variables** panel, add all keys from both `client/.env` and `server/.env`:
+   - `VITE_SUPABASE_URL`: *Your Supabase Project URL*
+   - `VITE_SUPABASE_ANON_KEY`: *Your Supabase Public Anon Key*
+   - `VITE_API_URL`: `/api` *(Your backend is served on the same domain under `/api`)*
    - `SUPABASE_URL`: *Your Supabase Project URL*
    - `SUPABASE_SERVICE_ROLE_KEY`: *Your Service Role Key*
    - `DATABASE_URL`: *Your Supabase PostgreSQL Connection String*
    - `GROQ_API_KEY`: *Your Groq API Key*
    - `GEMINI_API_KEY`: *Your Gemini API Key*
    - `JWT_SECRET`: *Your Supabase JWT Secret*
-4. Deploy the service and retrieve the public endpoint (e.g., `https://nexus-gg.onrender.com`).
-
-### Deploying the Frontend React App (Vercel)
-1. Import your repository into [Vercel](https://vercel.com).
-2. Configure the project build options:
-   - **Framework Preset**: `Vite`
-   - **Root Directory**: `client`
-   - **Build Command**: `npm run build`
-   - **Output Directory**: `dist`
-3. In the **Environment Variables** panel, register:
-   - `VITE_SUPABASE_URL`: *Your Supabase Project URL*
-   - `VITE_SUPABASE_ANON_KEY`: *Your Supabase Public Anon Key*
-   - `VITE_API_URL`: `https://nexus-gg.onrender.com` *(Point to your deployed Render URL)*
-4. Click **Deploy**. Vercel will automatically build the SPA distribution.
+5. Click **Deploy**. Vercel will automatically build the React app and deploy the Express API as Serverless Functions.
 
 ### Post-Deployment: Configure Redirect URLs
 To enable authentication redirects to work correctly in production:

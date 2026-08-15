@@ -27,7 +27,7 @@ app.use('/api/coaching', coachingRoutes);
 app.use('/api/progress', progressRoutes);
 
 // Health check endpoint
-app.get('/health', (req, res) => {
+app.get(['/health', '/api/health'], (req, res) => {
   res.json({
     status: 'healthy',
     uptime: process.uptime(),
